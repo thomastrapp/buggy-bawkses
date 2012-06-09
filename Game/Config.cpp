@@ -65,7 +65,7 @@ namespace Game
       )
       (
         "gravity-y", 
-        boost::program_options::value<float>()->default_value(9.8f), 
+        boost::program_options::value<float>()->default_value(2.8f), 
         "Gravity downwards"
       )
       (

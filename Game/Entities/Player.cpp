@@ -11,11 +11,15 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   visible()
 {
   {
-    sf::Vector2f stage_size = game_world.get_stage_size();
+    const sf::Vector2f stage_size(
+      static_cast<float>(conf->get<int>("window-width")),
+      static_cast<float>(conf->get<int>("window-height"))
+    );
     sf::Vector2f box_center_coord(stage_size.x / 2.0f, stage_size.y / 2.0f);
   
     b2BodyDef playerDef;
     playerDef.type = b2_dynamicBody;
+    playerDef.fixedRotation = true;
     playerDef.position.Set(
       Game::Util::pixel_to_meter(box_center_coord.x),
       Game::Util::pixel_to_meter(box_center_coord.y)

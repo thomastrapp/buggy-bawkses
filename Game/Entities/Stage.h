@@ -11,12 +11,11 @@
 #include "Game/Config.h"
 #include "Game/Window.h"
 #include "Game/Util/Util.h"
+#include "Game/Entities/Rectangle.h"
+#include "Game/Entities/RectangleDef.h"
 
 namespace Game 
 {
-  // forward declaration to solve circular dependency between World and Entity
-  class world;
-  
   namespace Entities
   {
 
@@ -34,9 +33,11 @@ private:
   Stage& operator=(const Stage&);
 
   boost::shared_ptr<Game::Config> config;
-
-  b2Body * physics;
-  sf::RectangleShape visible;
+  Game::World& world;
+  
+  Game::Entities::Rectangle left;
+  Game::Entities::Rectangle bottom;
+  Game::Entities::Rectangle right;
 };
 
   }

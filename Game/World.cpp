@@ -1,6 +1,6 @@
 #include "Game/World.h"
 
-// Solves circular dependency between World and Entity (and Player)
+// Solve circular dependencies
 #include "Game/Entity.h"
 #include "Game/Entities/Stage.h"
 #include "Game/Entities/Player.h"
@@ -47,15 +47,6 @@ namespace Game
   boost::shared_ptr<b2World> World::b2world() const
   {
     return this->b2_world;
-  }
-  
-  // UNUSED DELETE
-  sf::Vector2f World::get_stage_size() const
-  {
-    return sf::Vector2f(
-      static_cast<float>(this->config->get<int>("window-width")),
-      static_cast<float>(this->config->get<int>("window-height"))
-    );
   }
   
   void World::_setup_stage()

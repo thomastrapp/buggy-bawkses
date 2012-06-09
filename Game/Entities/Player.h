@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef GAMEENTITIESPLAYER_H
+#define GAMEENTITIESPLAYER_H
 
 #include <boost/shared_ptr.hpp>
 
@@ -35,4 +35,4 @@ private:
   }
 }
 
-#endif // PLAYER_H
+#endif // GAMEENTITIESPLAYER_H

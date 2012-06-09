@@ -1,5 +1,5 @@
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef GAMEUTILUTIL_H
+#define GAMEUTILUTIL_H
 
 #include <iostream>
 
@@ -19,4 +19,4 @@ namespace Game
   }
 }
 
-#endif // UTIL_H
+#endif // GAMEUTILUTIL_H

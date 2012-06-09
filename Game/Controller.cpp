@@ -5,11 +5,8 @@ namespace Game
   Controller::Controller(boost::shared_ptr<Game::Config> conf)
     : config(conf),
       window(conf),
-      world(conf),
-      debugDraw(&window)
+      world(conf)
   {
-    this->debugDraw.SetFlags(b2Draw::e_shapeBit);
-    this->world.b2world()->SetDebugDraw(&debugDraw);
   }
   
   Controller::~Controller()
@@ -43,7 +40,6 @@ namespace Game
   {
     this->window.clear();
     this->world.render(this->window);
-    //this->world.drawDebugData();
     this->window.display();
   }
   

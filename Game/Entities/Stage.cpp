@@ -8,50 +8,62 @@ namespace Game
 Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
 : Entity(conf, game_world),
   config(conf),
-  physics(NULL),
-  visible()
+  world(game_world),
+  left(
+    conf,
+    game_world,
+    Game::Entities::RectangleDef(
+      sf::Vector2f( // size
+        20.0f,
+        static_cast<float>(this->config->get<int>("window-height"))
+      ), 
+      sf::Vector2f( // position
+        0.0f,
+        static_cast<float>(this->config->get<int>("window-height")) / 2.0f
+      )
+    )
+  ),
+  bottom(
+    conf,
+    game_world,
+    Game::Entities::RectangleDef(
+      sf::Vector2f( // size
+        static_cast<float>(this->config->get<int>("window-width")), 
+        20.0f
+      ), 
+      sf::Vector2f( // position
+        static_cast<float>(this->config->get<int>("window-width")) / 2.0f,
+        static_cast<float>(this->config->get<int>("window-height"))
+      )
+    )
+  ),
+  right(
+    conf, 
+    game_world,
+    Game::Entities::RectangleDef(
+      sf::Vector2f( // size
+        20.0f,
+        static_cast<float>(this->config->get<int>("window-height"))
+      ), 
+      sf::Vector2f( // position
+        static_cast<float>(this->config->get<int>("window-width")),
+        static_cast<float>(this->config->get<int>("window-height")) / 2.0f
+      )
+    )
+  )
 {
-  sf::Vector2f stage_size = game_world.get_stage_size();
-  sf::Vector2f box_center_coord(stage_size.x / 2.0f, stage_size.y);
-  sf::Vector2f box_center_size(stage_size.x / 2.0f, 5.0f);
-  
-  {
-    b2BodyDef groundDef;
-    groundDef.position.Set(
-      Game::Util::pixel_to_meter(box_center_coord.x),
-      Game::Util::pixel_to_meter(box_center_coord.y)
-    );
-    
-    this->physics = game_world.b2world()->CreateBody(&groundDef);
-  }
-  
-  {
-    b2PolygonShape groundBox;
-    groundBox.SetAsBox(
-      Game::Util::pixel_to_meter(box_center_size.x),
-      Game::Util::pixel_to_meter(box_center_size.y)
-    );
-    this->physics->CreateFixture(&groundBox, 0.0f);
-  }
- 
-  {
-    sf::Vector2f box_size(box_center_size.x * 2.0f, box_center_size.y * 2.0f);
-    this->visible.setFillColor(sf::Color(255, 0, 0));
-    this->visible.setSize(box_size);
-    this->visible.setOrigin(box_center_size);
-    this->sync_visible(this->physics, this->visible);
-  }
 }
 
 void Stage::render(sf::RenderTarget& renderer)
 {
-  renderer.draw(this->visible);
+  this->left.render(renderer);
+  this->bottom.render(renderer);
+  this->right.render(renderer);
 }
 
 void Stage::update()
 {
 }
-
 
   }
 }

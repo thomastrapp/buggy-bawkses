@@ -14,8 +14,6 @@ namespace Game
 {
   // Forward declaration to solve circular dependency between World and Entity
   class Entity;
-  // and World and Player
-  class Player;
   
   typedef std::vector< boost::shared_ptr<Game::Entity> > t_entities;
 

@@ -1,5 +1,5 @@
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef GAMEENTITY_H
+#define GAMEENTITY_H
 
 #include <boost/shared_ptr.hpp>
 #include <Box2D/Box2D.h>
@@ -8,7 +8,7 @@
 #include "Game/Config.h"
 #include "Game/World.h"
 #include "Game/Util/Util.h"
-
+ 
 namespace Game
 {
 
@@ -36,4 +36,4 @@ private:
 
 }
 
-#endif // ENTITY_H
+#endif // GAMEENTITY_H

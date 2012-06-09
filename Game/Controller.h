@@ -10,8 +10,6 @@
 #include "Game/Window.h"
 #include "Game/World.h"
 
-#include "3rdParty/DebugDraw.h"
-
 namespace Game 
 {
   class Controller
@@ -34,7 +32,6 @@ namespace Game
     
     Game::Window window;
     Game::World world;
-    DebugDraw debugDraw;
   };
 }
 
