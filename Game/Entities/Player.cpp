@@ -19,6 +19,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   
     b2BodyDef playerDef;
     playerDef.type = b2_dynamicBody;
+    // disable rotation
     playerDef.fixedRotation = true;
     playerDef.position.Set(
       Game::Util::pixel_to_meter(box_center_coord.x),
@@ -47,11 +48,9 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   }
   
   {
-    sf::Vector2f box_size(box_center_size.x * 2.0f, box_center_size.y * 2.0f);
     this->visible.setFillColor(sf::Color(255, 68, 0));
-    this->visible.setSize(box_size);
+    this->visible.setSize(box_center_size * 2.0f);
     this->visible.setOrigin(box_center_size);
-    this->sync_visible(this->physics, this->visible);
   }
 }
 
