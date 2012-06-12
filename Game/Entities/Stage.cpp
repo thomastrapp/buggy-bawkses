@@ -9,7 +9,7 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
 : Entity(conf, game_world),
   config(conf),
   world(game_world),
-  left(
+  left( // Rectangle
     conf,
     game_world,
     Game::Entities::RectangleDef(
@@ -23,7 +23,7 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
       )
     )
   ),
-  bottom(
+  bottom( // Rectangle
     conf,
     game_world,
     Game::Entities::RectangleDef(
@@ -37,7 +37,7 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
       )
     )
   ),
-  right(
+  right( // Rectangle
     conf, 
     game_world,
     Game::Entities::RectangleDef(
