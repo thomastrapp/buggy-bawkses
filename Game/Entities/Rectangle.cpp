@@ -16,6 +16,7 @@ Rectangle::Rectangle(
   physics(NULL),
   visible(rect_def.size)
 {
+  // setup the rectangle
   {
     b2BodyDef blockDef;
     blockDef.position.Set(
@@ -26,6 +27,7 @@ Rectangle::Rectangle(
     this->physics = this->world.b2world()->CreateBody(&blockDef);
   }
   
+  // setup the rectangle's appearance in the physics simulation
   {
     b2PolygonShape blockBox;
     blockBox.SetAsBox(
@@ -40,6 +42,7 @@ Rectangle::Rectangle(
     this->physics->CreateFixture(&fixtureDef);
   }
  
+  // visible (sfml RectangleShape that gets rendered on screen)
   {
     this->visible.setFillColor(sf::Color(0, 255, 0));
     this->visible.setOrigin(rect_def.size / 2.0f);
