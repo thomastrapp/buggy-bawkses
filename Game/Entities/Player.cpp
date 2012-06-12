@@ -29,13 +29,16 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     this->physics = game_world.b2world()->CreateBody(&playerDef);
   }
   
-  sf::Vector2f box_center_size(10.0f, 30.0f);
+  sf::Vector2f player_size(
+    conf->get<float>("player-size-x"),
+    conf->get<float>("player-size-y")
+  );
   
   {
     b2PolygonShape playerBox;
     playerBox.SetAsBox(
-      Game::Util::pixel_to_meter(box_center_size.x),
-      Game::Util::pixel_to_meter(box_center_size.y)
+      Game::Util::pixel_to_meter(player_size.x),
+      Game::Util::pixel_to_meter(player_size.y)
     );
     
     b2FixtureDef fixtureDef;
@@ -52,11 +55,11 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   {
     b2PolygonShape footShape;
     footShape.SetAsBox(
-      Game::Util::pixel_to_meter(box_center_size.x) / 2.0f,
-      Game::Util::pixel_to_meter(box_center_size.x) / 2.0f,
+      Game::Util::pixel_to_meter(player_size.x) / 2.0f,
+      Game::Util::pixel_to_meter(player_size.x) / 2.0f,
       b2Vec2(
         0.0f,
-        Game::Util::pixel_to_meter(box_center_size.y)
+        Game::Util::pixel_to_meter(player_size.y)
       ),
       0.0f
     );
@@ -77,8 +80,8 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   
   {
     this->visible.setFillColor(sf::Color(255, 68, 0));
-    this->visible.setSize(box_center_size * 2.0f);
-    this->visible.setOrigin(box_center_size);
+    this->visible.setSize(player_size * 2.0f);
+    this->visible.setOrigin(player_size);
   }
 }
 

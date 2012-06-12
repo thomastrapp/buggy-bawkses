@@ -47,5 +47,11 @@ namespace Game
     this->reg.insert(
       std::pair<std::string, t_reg_value>("window-title", "Buggy Bawkses!")
     );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("player-size-x", 10.0f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("player-size-y", 30.0f)
+    );
   }
 }
