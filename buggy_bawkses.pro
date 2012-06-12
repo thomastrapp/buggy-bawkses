@@ -1,3 +1,4 @@
+DEFINES += ENABLE_DEBUG_DRAW
 SOURCES += main.cpp \
     Game/Config.cpp \
     Game/Registry.cpp \
@@ -7,8 +8,10 @@ SOURCES += main.cpp \
     Game/Entities/Player.cpp \
     Game/Entity.cpp \
     Game/Entities/Stage.cpp \
-    Game/Entities/Rectangle.cpp
-LIBS = -lsfml-graphics \
+    Game/Entities/Rectangle.cpp \
+    Game/Entities/Type.cpp \
+    Game/Util/DebugDraw.cpp
+LIBS += -lsfml-graphics \
     -lsfml-window \
     -lsfml-system \
     -lboost_program_options \
@@ -24,7 +27,10 @@ HEADERS += Game/Window.h \
     Game/Entity.h \
     Game/Entities/Stage.h \
     Game/Entities/Rectangle.h \
-    Game/Entities/RectangleDef.h
+    Game/Entities/RectangleDef.h \
+    Game/Entities/Bar.h \
+    Game/Entities/Type.h \
+    Game/Util/DebugDraw.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wsign-conversion \
     -Wextra \

@@ -6,7 +6,13 @@ namespace Game
     : config(conf),
       window(conf),
       world(conf)
+      #ifdef ENABLE_DEBUG_DRAW
+      , debug_draw(this->window)
+      #endif
   {
+    #ifdef ENABLE_DEBUG_DRAW
+      this->world.b2world()->SetDebugDraw(&(this->debug_draw));
+    #endif
   }
   
   Controller::~Controller()
@@ -26,7 +32,10 @@ namespace Game
         
       this->step();
       this->render();
-      system("sleep 0.01");
+      if( system("sleep 0.01") > 0 )
+      {
+        BOOST_THROW_EXCEPTION(Game::Exception());
+      }
     }
   }
   
@@ -40,6 +49,11 @@ namespace Game
   {
     this->window.clear();
     this->world.render(this->window);
+    
+    #ifdef ENABLE_DEBUG_DRAW
+      this->world.b2world()->DrawDebugData();
+    #endif
+    
     this->window.display();
   }
   

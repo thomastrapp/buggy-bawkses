@@ -7,6 +7,7 @@
 #include "Game/World.h"
 #include "Game/Util/Util.h"
 #include "Game/Entity.h"
+#include "Game/Entities/Type.h"
 
 namespace Game
 {
@@ -15,6 +16,26 @@ namespace Game
   
 class Player : public Game::Entity
 {
+  class FootContactListener : public b2ContactListener
+  {
+    public:
+      FootContactListener();
+      ~FootContactListener() {}
+      
+      void BeginContact(b2Contact* contact);
+      void EndContact(b2Contact* contact);
+      
+      bool is_foot_on_ground();
+            
+    private:
+      FootContactListener(const FootContactListener&);
+      FootContactListener& operator=(const FootContactListener&);
+      
+      bool _fixture_is_player_foot(b2Fixture* fixture);
+      
+      unsigned int foot_contacts;
+  };
+
 public:
   Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world);
   ~Player() {}
@@ -30,6 +51,8 @@ private:
 
   b2Body * physics;
   sf::RectangleShape visible;
+  
+  FootContactListener foot_sensor;
 };
 
   }

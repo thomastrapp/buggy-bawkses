@@ -48,7 +48,7 @@ namespace Game
         "help", 
         "Show help"
       )
-      ( 
+      (
         "window-height", 
         boost::program_options::value<int>()->default_value(600), 
         "Window height"
@@ -65,7 +65,7 @@ namespace Game
       )
       (
         "gravity-y", 
-        boost::program_options::value<float>()->default_value(2.8f), 
+        boost::program_options::value<float>()->default_value(9.8f), 
         "Gravity downwards"
       )
       (
@@ -75,12 +75,12 @@ namespace Game
       )
       (
         "velocity-iterations", 
-        boost::program_options::value<int>()->default_value(8), 
+        boost::program_options::value<int>()->default_value(8),
         "Velocity iterations"
       )
       (
         "position-iterations", 
-        boost::program_options::value<int>()->default_value(3), 
+        boost::program_options::value<int>()->default_value(3),
         "Position iterations"
       )
         ;

@@ -10,6 +10,10 @@
 #include "Game/Window.h"
 #include "Game/World.h"
 
+#ifdef ENABLE_DEBUG_DRAW
+  #include "Game/Util/DebugDraw.h"
+#endif
+
 namespace Game 
 {
   class Controller
@@ -32,6 +36,8 @@ namespace Game
     
     Game::Window window;
     Game::World world;
+    
+    Game::Util::DebugDraw debug_draw;
   };
 }
 

@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Game/Exception.h"
+#include "Game/Entities/Type.h"
 
 namespace Game
 {

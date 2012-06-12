@@ -32,7 +32,12 @@ Rectangle::Rectangle(
       Game::Util::pixel_to_meter(rect_def.size.x / 2.0f),
       Game::Util::pixel_to_meter(rect_def.size.y / 2.0f)
     );
-    this->physics->CreateFixture(&blockBox, 0.0f);
+    
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &blockBox;
+    fixtureDef.restitution = 0.0f;
+    
+    this->physics->CreateFixture(&fixtureDef);
   }
  
   {
