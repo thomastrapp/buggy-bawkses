@@ -11,6 +11,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   visible(),
   foot_sensor()
 {
+  // setup the player
   {
     const sf::Vector2f stage_size(
       static_cast<float>(conf->get<int>("window-width")),
@@ -19,7 +20,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     sf::Vector2f box_center_coord(stage_size.x / 2.0f, stage_size.y / 2.0f);
     b2BodyDef playerDef;
     playerDef.type = b2_dynamicBody;
-    // disable rotation
+    // disable rotation, player shall always be upright
     playerDef.fixedRotation = true;
     playerDef.position.Set(
       Game::Util::pixel_to_meter(box_center_coord.x),
@@ -34,6 +35,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     conf->get<float>("player-size-y")
   );
   
+  // setup the player's appearance in the physics simulation
   {
     b2PolygonShape playerBox;
     playerBox.SetAsBox(
@@ -53,6 +55,17 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   
   // Player foot
   {
+    /**
+     * To easily detect player collision with "grounds"
+     * we set up a foot, that does not participate in the
+     * physics simulation, but is subject to collisions.
+     * We then tell box2d to notify our b2ContactListener 
+     * derived class of any collisions.
+     *
+     * We therefore can later determine whether the Player
+     * is in air or on solid ground ("Can the player jump?").
+     */
+    
     b2PolygonShape footShape;
     footShape.SetAsBox(
       Game::Util::pixel_to_meter(player_size.x) / 2.0f,
@@ -71,6 +84,8 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     b2Fixture * footSensorFixture = 
       this->physics->CreateFixture(&footFixtureDef);
     
+    // We need to mark this fixture as PLAYER_FOOT to distinguish
+    // its collisions from other fixtures' collsisions.
     footSensorFixture->SetUserData(
       Game::Entities::Type::to_user_data(Game::Entities::Type::PLAYER_FOOT)
     );
@@ -78,9 +93,12 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     game_world.b2world()->SetContactListener(&(this->foot_sensor));
   }
   
+  // visible (sfml shape that gets rendered on screeen)
   {
     this->visible.setFillColor(sf::Color(255, 68, 0));
+    // sfml wants the size in total width/height
     this->visible.setSize(player_size * 2.0f);
+    // set sfml origin to the center of the shape (just like in box2d)
     this->visible.setOrigin(player_size);
   }
 }
