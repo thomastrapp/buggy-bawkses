@@ -53,5 +53,11 @@ namespace Game
     this->reg.insert(
       std::pair<std::string, t_reg_value>("player-size-y", 30.0f)
     );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("player-density", 1.0f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("player-friction", 1.0f)
+    );
   }
 }

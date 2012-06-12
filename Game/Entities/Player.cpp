@@ -43,8 +43,8 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &playerBox;
-    fixtureDef.density = 1.0f;
-    fixtureDef.friction = 1.0f;
+    fixtureDef.density = conf->get<float>("player-density");
+    fixtureDef.friction = conf->get<float>("player-friction");
     b2Fixture * playerFixture = this->physics->CreateFixture(&fixtureDef);
     playerFixture->SetUserData(
       Game::Entities::Type::to_user_data(Game::Entities::Type::PLAYER)
