@@ -12,7 +12,9 @@ Entity::Entity(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
 void Entity::sync_visible(const b2Body * source, sf::Transformable& target)
 {
   if( source == NULL )
+  {
     BOOST_THROW_EXCEPTION(Game::Exception());
+  }
   
   // sync position
   {
