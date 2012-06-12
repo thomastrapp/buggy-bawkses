@@ -14,7 +14,7 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     game_world,
     Game::Entities::RectangleDef(
       sf::Vector2f( // size
-        20.0f,
+        this->config->get<float>("stage-walls-width"),
         static_cast<float>(this->config->get<int>("window-height"))
       ), 
       sf::Vector2f( // position
@@ -29,7 +29,7 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     Game::Entities::RectangleDef(
       sf::Vector2f( // size
         static_cast<float>(this->config->get<int>("window-width")), 
-        20.0f
+        this->config->get<float>("stage-walls-width")
       ), 
       sf::Vector2f( // position
         static_cast<float>(this->config->get<int>("window-width")) / 2.0f,
@@ -42,7 +42,7 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     game_world,
     Game::Entities::RectangleDef(
       sf::Vector2f( // size
-        20.0f,
+        this->config->get<float>("stage-walls-width"),
         static_cast<float>(this->config->get<int>("window-height"))
       ), 
       sf::Vector2f( // position

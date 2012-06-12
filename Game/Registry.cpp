@@ -34,7 +34,10 @@ namespace Game
   
   template void Registry::set<int>(const std::string &key, int value);
   template void Registry::set<float>(const std::string &key, float value);
-  template void Registry::set<std::string>(const std::string &key, std::string value);
+  template void Registry::set<std::string>(
+    const std::string &key, 
+    std::string value
+  );
   
   bool Registry::exists(const std::string &key) const
   {
@@ -58,6 +61,9 @@ namespace Game
     );
     this->reg.insert(
       std::pair<std::string, t_reg_value>("player-friction", 1.0f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("stage-walls-width", 20.0f)
     );
   }
 }
