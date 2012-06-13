@@ -94,8 +94,12 @@ private:
    */
   Game::World world;
   
-  /// MUST BE ENCLOSED IN IFDEF ENABLE_DEBUG_DRAW
-    Game::Util::DebugDraw debug_draw; /**< TODO */
+  #ifdef ENABLE_DEBUG_DRAW
+    /**
+     * @brief debug_draw Draws the physical representation of Box2d objects.
+     */
+    Game::Util::DebugDraw debug_draw;
+  #endif
 };
 
 }
