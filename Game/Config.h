@@ -46,10 +46,10 @@ namespace Game
      * Else the value will be retrieved from the variables_map (Config::vm).
      * If the key doesn't exist at all an exception will be thrown.
      *
-     * T must be int, float or std::string.
+     * T must be bool, int, float or std::string.
      * 
      * @param key
-     * @return value of type int, float or std::string
+     * @return value of type bool, int, float or std::string
      */
     template <class T> T get(const std::string& key) const;
     

@@ -25,6 +25,7 @@ namespace Game
   // Template specifications
   // This allows us to keep the definition of Registry::get<T>(..) in 
   // the .cpp file
+  template bool Registry::get<bool>(const std::string& key) const;
   template int Registry::get<int>(const std::string& key) const;
   template float Registry::get<float>(const std::string& key) const;
   template std::string Registry::get<std::string>(const std::string& key) const;
@@ -38,6 +39,7 @@ namespace Game
   // Template specifications
   // This allows us to keep the definition of Registry::set<T>(..) in 
   // the .cpp file
+  template void Registry::set<bool>(const std::string &key, bool value);
   template void Registry::set<int>(const std::string &key, int value);
   template void Registry::set<float>(const std::string &key, float value);
   template void Registry::set<std::string>(
@@ -85,6 +87,9 @@ namespace Game
     );
     this->reg.insert(
       std::pair<std::string, t_reg_value>("position-iterations", 3)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("allow-sleeping", true)
     );
   }
 }

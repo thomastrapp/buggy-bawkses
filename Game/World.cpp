@@ -15,7 +15,7 @@ namespace Game
     config(conf),
     entities()
   {
-    this->b2_world->SetAllowSleeping(true);
+    this->b2_world->SetAllowSleeping(conf->get<bool>("allow-sleeping"));
     this->_setup_stage();
   }
   

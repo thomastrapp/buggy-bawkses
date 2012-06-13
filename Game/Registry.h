@@ -12,9 +12,9 @@ namespace Game
   /**
    * @brief The type that defines what can be saved in the Registry. 
    *
-   * Value must be one of int, std::string or float
+   * Value must be one of bool, int, std::string or float
    */
-  typedef boost::variant<int, std::string, float> t_reg_value;
+  typedef boost::variant<bool, int, std::string, float> t_reg_value;
   
   /**
    * @brief The map where the key/value pairs are stored
@@ -34,7 +34,7 @@ namespace Game
      * @brief Get a value for a key (template method)
      * 
      * If a key does not exist a Game::Exception is thrown.
-     * T must be one of int, std::string or float.
+     * T must be one of bool, int, std::string or float.
      *
      * @param key
      * @return value
@@ -45,7 +45,7 @@ namespace Game
     /**
      * @brief Set a value for a key (template method)
      *
-     * T must be one of int, std::string or float.
+     * T must be one of bool, int, std::string or float.
      *
      * @param key
      * @param value T must be one of int, std::string or float
