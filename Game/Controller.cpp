@@ -15,10 +15,6 @@ namespace Game
     #endif
   }
   
-  Controller::~Controller()
-  {
-  }
-  
   void Controller::start()
   {
     sf::Event sfmlEvent;
