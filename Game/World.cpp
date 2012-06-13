@@ -21,11 +21,18 @@ namespace Game
   
   void World::step()
   {
+    static const float timestep = this->config->get<float>("timestep");
+    static const int velocity_iterations = 
+      this->config->get<int>("velocity-iterations");
+    static const int position_iterations = 
+      this->config->get<int>("position-iterations");
+    
     this->b2_world->Step(
-      this->config->get<float>("timestep"), 
-      this->config->get<int>("velocity-iterations"), 
-      this->config->get<int>("position-iterations")
+      timestep,
+      velocity_iterations,
+      position_iterations
     );
+    
     this->b2_world->ClearForces();
   }
 
