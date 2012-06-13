@@ -65,7 +65,7 @@ namespace Game
     Registry& operator=(Game::Registry const&);
     
     /**
-     * @brief Setup hardcoded values
+     * @brief Setup internal values
      */
     void _fill_registry();
     

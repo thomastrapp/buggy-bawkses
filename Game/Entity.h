@@ -25,7 +25,7 @@ public:
    * @brief Construct Entity
    *
    * @param conf A shared_ptr to Game::Config, a class that stores user supplied
-   * configuration, as well as hardcoded key/value pairs.
+   * configuration, as well as internal key/value pairs.
    * @param game_world A reference to the global World, which is a wrapper for 
    * b2World
    */
@@ -83,7 +83,7 @@ private:
   
   /**
    * @brief A shared_ptr to Game::Config, a class that stores user supplied
-   * configuration, as well as hardcoded key/value pairs.
+   * configuration, as well as internal key/value pairs.
    */
   boost::shared_ptr<Game::Config> config;
   
