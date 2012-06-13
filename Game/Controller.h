@@ -14,6 +14,9 @@
   #include "Game/Util/DebugDraw.h"
 #endif
 
+/**
+ * @brief Global namespace
+ */
 namespace Game 
 {
 
@@ -31,8 +34,8 @@ public:
   /**
    * @brief Construct a Controller
    *
-   * @param conf A shared_ptr to Game::Config, a class that stores user supplied
-   * configuration, as well as internal key/value pairs.
+   * @param conf A shared_ptr to Game::Config, a class that stores user
+   * supplied configuration, as well as internal key/value pairs.
    */
   Controller(boost::shared_ptr<Game::Config> conf);
   ~Controller() {}
