@@ -32,6 +32,9 @@ namespace Game
     }
   }
   
+  // Template specifications
+  // This allows us to keep the definition of Config::get<T>(..) in 
+  // the .cpp file
   template int Config::get<int>(const std::string& key) const;
   template float Config::get<float>(const std::string& key) const;
   template std::string Config::get<std::string>(const std::string& key) const;
