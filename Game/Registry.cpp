@@ -12,6 +12,7 @@ namespace Game
   T Registry::get(const std::string &key) const
   {
     t_reg_map::const_iterator it = this->reg.find(key);
+    
     if( it == this->reg.end() )
     {
       BOOST_THROW_EXCEPTION(Game::Exception());
@@ -55,8 +56,17 @@ namespace Game
   
   void Registry::_fill_registry()
   {
+    // The static_cast to std::string here is important:
+    // Since a "const char *" is not within t_reg_value it will get converted
+    // to whatever fits. Candidates are probably bool and int. Anyway, this will
+    // fail horribly.
+    // So we explicitly cast "const char *" to const std::string and stay on the
+    // sunny side of life.
     this->reg.insert(
-      std::pair<std::string, t_reg_value>("window-title", "Buggy Bawkses!")
+      std::pair<std::string, t_reg_value>(
+        "window-title", 
+        static_cast<const std::string>("Buggy Bawkses!")
+      )
     );
     this->reg.insert(
       std::pair<std::string, t_reg_value>("player-size-x", 10.0f)
