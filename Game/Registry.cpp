@@ -56,16 +56,27 @@ namespace Game
   
   void Registry::_fill_registry()
   {
-    // The static_cast to std::string here is important:
-    // Since a "const char *" is not within t_reg_value it will get converted
-    // to whatever fits. Candidates are probably bool and int. Anyway, this will
-    // fail horribly.
-    // So we explicitly cast "const char *" to const std::string and stay on the
+    // The explicit conversion from 'const char *' to std::string here is 
+    // important.
+    // A t_reg_value may contain one of the following types: 
+    // bool, int, std::string, float
+    // C++ implicit conversion magic prefers to convert 'const char *' to bool
+    // over conversion from 'const char *' to std::string, because:
+    //
+    // 1. Pointers can be implicitly converted to bool
+    // 2. A conversion from 'const char *' to std::string involves constructing
+    //    std::string: std::basic_string(const CharT* s)
+    // 3. Conversion magic prefers conversions that are less work, which 
+    //    favors conversion from char * to bool over constructing a std::string.
+    //
+    // See 'C++ Templates' by Vandevoorde, Appendix B.2 
+    //
+    // So we explicitly convert 'const char *' to std::string and stay on the
     // sunny side of life.
     this->reg.insert(
       std::pair<std::string, t_reg_value>(
         "window-title", 
-        static_cast<const std::string>("Buggy Bawkses!")
+        std::string("Buggy Bawkses!")
       )
     );
     this->reg.insert(
