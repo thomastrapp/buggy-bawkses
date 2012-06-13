@@ -44,9 +44,8 @@ namespace Game
     
     /**
      * @brief Render all child entities
-     * @badcode Change param to sf::RenderTarget
      *
-     * @param window The canvas to draw on
+     * @param renderer The canvas to draw on
      */
     void render(sf::RenderTarget& renderer);
     
@@ -57,7 +56,6 @@ namespace Game
     
     /**
      * @brief Handle input
-     * @badcode Rename to handle_event
      *
      * @param event 
      */

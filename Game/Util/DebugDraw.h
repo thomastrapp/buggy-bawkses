@@ -45,7 +45,6 @@ public:
    *
    * @param vertices The vertices that form the shape
    * @param vertexCount The number of elements in vertices
-   * @param unused dummy
    */
   void DrawSolidPolygon(
     const b2Vec2 *vertices, 

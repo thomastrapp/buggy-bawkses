@@ -58,8 +58,6 @@ public:
    * @brief To pass user supplied input to a Entity
    *
    * Subclasses may implement this method.
-   *
-   * @param dummy
    */
   virtual void handle_input(const sf::Event&)
   {
