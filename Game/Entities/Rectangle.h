@@ -20,8 +20,7 @@ namespace Game
  * @brief A static rectangle
  *
  * A sf::RectangleShape combined with a Box2d b2Body.
- * Position is static (e.g. cannot be pushed).
- *
+ * Position is static (cannot be pushed).
  */
 class Rectangle : public Game::Entity
 {
@@ -31,7 +30,7 @@ public:
    *
    * @param conf A shared_ptr to Game::Config, a class that stores user supplied
    * configuration, as well as hardcoded key/value pairs.
-   * @param game_world Rreference to the global World, which is a wrapper for 
+   * @param game_world A reference to the global World, which is a wrapper for 
    * b2World
    * @param rect_def An instance of class RectangleDef, which describes the size 
    * and position of this rectangle
@@ -52,7 +51,6 @@ public:
   
   /**
    * @brief Update this Rectangle
-   *
    */
   void update();
 
@@ -67,8 +65,7 @@ private:
   boost::shared_ptr<Game::Config> config;
   
   /**
-   * @brief A reference to the global World, which is a wrapper for 
-   * b2World
+   * @brief A reference to the global World, which is a wrapper for b2World
    */
   Game::World& world;
 
