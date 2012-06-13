@@ -10,13 +10,12 @@ namespace Game
   namespace Entities
   {
     /**
-     * @brief Encapsulates all constants and function related to Entity types.
+     * @brief Constants and functions related to Entity types.
      */
     namespace Type 
     {
       /**
-       * @brief The t_entities_type enum defines constants for all Entity
-       * types.
+       * @brief The t_entities_type enum defines constants for Entity types.
        *
        * These constants may then be used to identify participants in 
        * collisions.
@@ -38,8 +37,8 @@ namespace Game
        * Helper function to convert between int and void pointer.
        * Returned pointer must not be referenced.
        *
-       * @param entity_type a constant from enum t_entities_type
-       * @return A (invalid) void pointer, whose address equals passed
+       * @param entity_type A constant from enum t_entities_type
+       * @return An (invalid) void pointer, whose address equals passed
        * parameter entity_type
        */
       void * to_user_data(Game::Entities::Type::t_entities_type entity_type);
