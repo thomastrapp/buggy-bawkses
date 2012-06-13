@@ -7,6 +7,7 @@ namespace Util
   DebugDraw::DebugDraw(sf::RenderTarget& render_target)
   : renderer(render_target)
   {
+    // Tell box2d to draw solid shapes
     this->SetFlags(b2Draw::e_shapeBit);
   }
   
@@ -15,6 +16,8 @@ namespace Util
   )
   {
     sf::VertexArray solid_polygon;
+    
+    // All points in VertexArray shall be treated as connected corners
     solid_polygon.setPrimitiveType(sf::LinesStrip);
     
     for(int i = 0; i < vertexCount; ++i)
@@ -30,6 +33,7 @@ namespace Util
       solid_polygon.append(vert);
     }
     
+    // connect last corners to close the shape
     const sf::Vertex vert(
       sf::Vector2f(
         Game::Util::meter_to_pixel((vertices)->x),
