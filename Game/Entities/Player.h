@@ -40,13 +40,14 @@ class Player : public Game::Entity
       /**
        * @brief Record start of collisions
        *
-       * Increments private member foot_contacts if any of the fixtures subject to 
-       * this collision are the Player's foot (fixtures marked PLAYER_FOOT).
+       * Increments private member foot_contacts if any of the fixtures subject 
+       * to this collision are the Player's foot (fixtures marked PLAYER_FOOT).
        *
-       * @param contact Contains pointers to two b2fixtures that are subject to this
-       * collision
+       * Throws Game::Exception if contact is NULL.
        *
-       * @throws Game::Exception on parameter contact == NULL
+       * @param contact Contains pointers to two b2fixtures that are subject to
+       * this collision
+       * @throws Game::Exception
        */
       void BeginContact(b2Contact* contact);
 
@@ -56,10 +57,11 @@ class Player : public Game::Entity
        * Decrements private member foot_contacts if any of the fixtures subject to 
        * this collision are the Player's foot (fixtures marked PLAYER_FOOT).
        *
+       * Throws Game::Exception if contact is NULL.
+       *
        * @param contact Contains pointers to two b2fixtures that are subject to this
        * collision
-       *
-       * @throws Game::Exception on parameter contact == NULL
+       * @throws Game::Exception
        */
       void EndContact(b2Contact* contact);
       
@@ -83,9 +85,11 @@ class Player : public Game::Entity
        *
        * Checks if given fixture is marked PLAYER_FOOT.
        *
+       * Throws Game::Exception if fixture is NULL.
+       *
        * @param fixture A non NULL fixture
        * @return true if fixture's user data is PLAYER_FOOT
-       * @throws Game::Exception on parameter fixture == NULL
+       * @throws Game::Exception
        */
       bool _fixture_is_player_foot(b2Fixture* fixture);
       
@@ -100,9 +104,9 @@ public:
   /**
    * @brief Construct a new Player
    *
-   * @param conf shared_ptr to Game::Config, a class that stores user supplied
+   * @param conf A shared_ptr to Game::Config, a class that stores user supplied
    * configuration, as well as hardcoded key/value pairs.
-   * @param game_world reference to the global World, which is a wrapper for 
+   * @param game_world A reference to the global World, which is a wrapper for 
    * b2World
    */
   Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world);
@@ -121,7 +125,6 @@ public:
    * Update the Player logic ("tick")
    * and then call Game::Entity::sync_visible to apply any Box2d transformations
    * to the sfml shape.
-   *
    */
   void update();
   
@@ -141,11 +144,12 @@ private:
   Player& operator=(const Player&);
 
   /**
-   * @brief The physical representation of a Player
+   * @brief The physical representation of a Player. Memory is owned by 
+   * b2World.
    */
   b2Body * physics;
   /**
-   * @brief The visual representation of a Player
+   * @brief The SFML shape, the visual representation of a Player
    */
   sf::RectangleShape visible;
   

@@ -56,14 +56,14 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   // Player foot
   {
     /**
-     * To easily detect player collision with "grounds"
-     * we set up a foot, that does not participate in the
-     * physics simulation, but is subject to collisions.
-     * We then tell box2d to notify our b2ContactListener 
-     * derived class of any collisions.
+     * To easily detect Player collision with "grounds" we set up a foot, that
+     * does not participate in the physics simulation, but is subject to 
+     * collisions.
+     * We then tell box2d to notify our FootContactListener (which derives from 
+     * b2ContactListener) when any collisions happen.
      *
-     * We therefore can later determine whether the Player
-     * is in air or on solid ground ("Can the player jump?").
+     * We therefore can later determine whether the Player is in air or on solid
+     * ground ("Can the player jump?").
      */
     
     b2PolygonShape footShape;
@@ -93,7 +93,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     game_world.b2world()->SetContactListener(&(this->foot_sensor));
   }
   
-  // visible (sfml shape that gets rendered on screeen)
+  // visible (sfml shape that gets rendered on screen)
   {
     this->visible.setFillColor(sf::Color(255, 68, 0));
     // sfml wants the size in total width/height
@@ -105,6 +105,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
 
 void Player::handle_input(const sf::Event& event)
 {
+  // Be defensive
   if( event.type != sf::Event::KeyPressed )
   {
     BOOST_THROW_EXCEPTION(Game::Exception());
