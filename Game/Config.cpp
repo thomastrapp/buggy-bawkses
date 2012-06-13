@@ -58,31 +58,6 @@ namespace Game
         boost::program_options::value<int>()->default_value(800),
         "Window width"
       )
-      (
-        "gravity-x", 
-        boost::program_options::value<float>()->default_value(0.0f), 
-        "Gravity sideways"
-      )
-      (
-        "gravity-y", 
-        boost::program_options::value<float>()->default_value(9.8f), 
-        "Gravity downwards"
-      )
-      (
-        "timestep", 
-        boost::program_options::value<float>()->default_value(1.0f/60.0f), 
-        "Timestep"
-      )
-      (
-        "velocity-iterations", 
-        boost::program_options::value<int>()->default_value(8),
-        "Velocity iterations"
-      )
-      (
-        "position-iterations", 
-        boost::program_options::value<int>()->default_value(3),
-        "Position iterations"
-      )
         ;
   }
   

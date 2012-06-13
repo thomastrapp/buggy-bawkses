@@ -65,5 +65,20 @@ namespace Game
     this->reg.insert(
       std::pair<std::string, t_reg_value>("stage-walls-width", 20.0f)
     );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("gravity-x", 0.0f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("gravity-y", 9.8f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("timestep", 1.0f/60.0f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("velocity-iterations", 8)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("position-iterations", 3)
+    );
   }
 }
