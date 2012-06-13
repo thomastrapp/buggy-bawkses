@@ -32,6 +32,7 @@ namespace Game
   {
     window.clear();
     
+    /// TODO: Move _update_entities to own method ::update()
     this->_update_entities();
     this->_render_entities(window);
   }
