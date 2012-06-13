@@ -32,6 +32,8 @@ namespace Game
         
       this->step();
       this->render();
+      
+      // TODO: Remove this
       if( system("sleep 0.01") > 0 )
       {
         BOOST_THROW_EXCEPTION(Game::Exception());
@@ -41,13 +43,13 @@ namespace Game
   
   void Controller::step()
   {
-    this->world.step_default();
-    this->world.b2world()->ClearForces();
+    this->world.step();
   }
   
   void Controller::render()
   {
     this->window.clear();
+    this->world.update();
     this->world.render(this->window);
     
     #ifdef ENABLE_DEBUG_DRAW

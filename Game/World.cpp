@@ -19,22 +19,30 @@ namespace Game
     this->_setup_stage();
   }
   
-  void World::step_default()
+  void World::step()
   {
     this->b2_world->Step(
       this->config->get<float>("timestep"), 
       this->config->get<int>("velocity-iterations"), 
       this->config->get<int>("position-iterations")
     );
+    this->b2_world->ClearForces();
   }
 
-  void World::render(Game::Window& window)
+  void World::render(sf::RenderTarget& renderer)
   {
-    window.clear();
-    
-    /// TODO: Move _update_entities to own method ::update()
-    this->_update_entities();
-    this->_render_entities(window);
+    BOOST_FOREACH(boost::shared_ptr<Game::Entity> entity, this->entities)
+    {
+      entity->render(renderer);
+    }
+  }
+  
+  void World::update()
+  {
+    BOOST_FOREACH(boost::shared_ptr<Game::Entity> entity, this->entities)
+    {
+      entity->update();
+    }
   }
 
   void World::handle_input(const sf::Event &input)
@@ -66,22 +74,6 @@ namespace Game
         new Game::Entities::Player(this->config, *this)
       );
       this->entities.push_back(ptr_player);
-    }
-  }
-
-  void World::_update_entities()
-  {
-    BOOST_FOREACH(boost::shared_ptr<Game::Entity> entity, this->entities)
-    {
-      entity->update();
-    }
-  }
-  
-  void World::_render_entities(sf::RenderTarget &renderer)
-  {
-    BOOST_FOREACH(boost::shared_ptr<Game::Entity> entity, this->entities)
-    {
-      entity->render(renderer);
     }
   }
 }

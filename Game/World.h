@@ -38,10 +38,9 @@ namespace Game
     ~World() {}
     
     /**
-     * @brief Take a step
-     * @badcode Rename to step()
+     * @brief Step the world
      */
-    void step_default();
+    void step();
     
     /**
      * @brief Render all child entities
@@ -49,7 +48,12 @@ namespace Game
      *
      * @param window The canvas to draw on
      */
-    void render(Game::Window& window);
+    void render(sf::RenderTarget& renderer);
+    
+    /**
+     * @brief Update all child entities
+     */
+    void update();
     
     /**
      * @brief Handle input
@@ -62,7 +66,7 @@ namespace Game
     /**
      * @brief Return a shared_pointer to a Box2d b2World
      *
-     * @return boost::shared_ptr<b2World>
+     * @return boost::shared_ptr<b2World> A shared pointer to b2World
      */
     boost::shared_ptr<b2World> b2world() const;
     
@@ -74,19 +78,6 @@ namespace Game
      * @brief Bring entities to life
      */
     void _setup_stage();
-    
-    /**
-     * @brief Helper function to update child entities.
-     * @badcode move to public function update
-     */
-    void _update_entities();
-    
-    /**
-     * @brief Render child entities
-     *
-     * @param renderer The canvas to draw on
-     */
-    void _render_entities(sf::RenderTarget& renderer);
     
     /**
      * @brief A shared_ptr to a Box2d b2World
