@@ -22,6 +22,9 @@ namespace Game
     }
   }
   
+  // Template specifications
+  // This allows us to keep the definition of Registry::get<T>(..) in 
+  // the .cpp file
   template int Registry::get<int>(const std::string& key) const;
   template float Registry::get<float>(const std::string& key) const;
   template std::string Registry::get<std::string>(const std::string& key) const;
@@ -32,6 +35,9 @@ namespace Game
     this->reg[key] = t_reg_value(value);
   }
   
+  // Template specifications
+  // This allows us to keep the definition of Registry::set<T>(..) in 
+  // the .cpp file
   template void Registry::set<int>(const std::string &key, int value);
   template void Registry::set<float>(const std::string &key, float value);
   template void Registry::set<std::string>(
