@@ -25,7 +25,7 @@ namespace Game
       {
         this->handle_event(sfmlEvent);
       }
-        
+      
       this->step();
       this->render();
       

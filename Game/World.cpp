@@ -21,7 +21,8 @@ namespace Game
   
   void World::step()
   {
-    static const float timestep = this->config->get<float>("timestep");
+    static const float timestep = 
+      this->config->get<float>("timestep");
     static const int velocity_iterations = 
       this->config->get<int>("velocity-iterations");
     static const int position_iterations = 

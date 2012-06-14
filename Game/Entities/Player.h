@@ -11,12 +11,14 @@
 
 namespace Game
 {
+  /**
+   * @brief Everything related to entities
+   */
   namespace Entities
   {
   
 /**
  * @brief A user controllable Entity
- *
  */
 class Player : public Game::Entity
 {
@@ -54,13 +56,13 @@ class Player : public Game::Entity
       /**
        * @brief Record end of collisions
        *
-       * Decrements private member foot_contacts if any of the fixtures subject to 
-       * this collision are the Player's foot (fixtures marked PLAYER_FOOT).
+       * Decrements private member foot_contacts if any of the fixtures subject 
+       * to this collision are the Player's foot (fixtures marked PLAYER_FOOT).
        *
        * Throws Game::Exception if contact is NULL.
        *
-       * @param contact Contains pointers to two b2fixtures that are subject to this
-       * collision
+       * @param contact Contains pointers to two b2fixtures that are subject to 
+       * this collision
        * @throws Game::Exception
        */
       void EndContact(b2Contact* contact);
@@ -148,6 +150,7 @@ private:
    * b2World.
    */
   b2Body * physics;
+  
   /**
    * @brief The SFML shape, the visual representation of a Player
    */

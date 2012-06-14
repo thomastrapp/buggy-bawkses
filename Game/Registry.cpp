@@ -67,7 +67,8 @@ namespace Game
     // 2. A conversion from 'const char *' to std::string involves constructing
     //    std::string: std::basic_string(const CharT* s)
     // 3. Conversion magic prefers conversions that are less work, which 
-    //    favors conversion from char * to bool over constructing a std::string.
+    //    favors conversion from char * to bool over constructing a 
+    //    std::string.
     //
     // See 'C++ Templates' by Vandevoorde, Appendix B.2 
     //
