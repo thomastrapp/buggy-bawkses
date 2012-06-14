@@ -75,7 +75,7 @@ namespace Game
     /**
      * @brief Bring entities to life
      */
-    void _setup_stage();
+    void _setup_entities();
     
     /**
      * @brief A shared_ptr to a Box2d b2World

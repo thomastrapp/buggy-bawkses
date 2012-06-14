@@ -2,8 +2,9 @@
 
 // Solve circular dependencies
 #include "Game/Entity.h"
-#include "Game/Entities/Stage.h"
 #include "Game/Entities/Player.h"
+#include "Game/Entities/WallLeft.h"
+#include "Game/Entities/WallRight.h"
 
 namespace Game
 {
@@ -16,7 +17,7 @@ namespace Game
     entities()
   {
     this->b2_world->SetAllowSleeping(conf->get<bool>("allow-sleeping"));
-    this->_setup_stage();
+    this->_setup_entities();
   }
   
   void World::step()
@@ -66,14 +67,22 @@ namespace Game
     return this->b2_world;
   }
   
-  void World::_setup_stage()
+  void World::_setup_entities()
   {
-    // bounds (left, bottom, right)
+    // left wall
     {
-      boost::shared_ptr<Game::Entity> ptr_stage(
-        new Game::Entities::Stage(this->config, *this)
+      boost::shared_ptr<Game::Entity> ptr_left(
+        new Game::Entities::WallLeft(this->config, *this)
       );
-      this->entities.push_back(ptr_stage);
+      this->entities.push_back(ptr_left);
+    }
+    
+    // right wall
+    {
+      boost::shared_ptr<Game::Entity> ptr_right(
+        new Game::Entities::WallRight(this->config, *this)
+      );
+      this->entities.push_back(ptr_right);
     }
     
     // player

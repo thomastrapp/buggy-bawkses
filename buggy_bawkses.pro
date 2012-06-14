@@ -16,10 +16,11 @@ SOURCES += main.cpp \
     Game/Util/Util.cpp \
     Game/Entities/Player.cpp \
     Game/Entity.cpp \
-    Game/Entities/Stage.cpp \
-    Game/Entities/Rectangle.cpp \
     Game/Util/DebugDraw.cpp \
-    Game/Entities/Id.cpp
+    Game/Entities/Id.cpp \
+    Game/Entities/WallLeft.cpp \
+    Game/Entities/WallRight.cpp \
+    Game/Entities/Wall.cpp
 LIBS += -lsfml-graphics \
     -lsfml-window \
     -lsfml-system \
@@ -34,11 +35,12 @@ HEADERS += Game/Window.h \
     Game/Util/Util.h \
     Game/Entities/Player.h \
     Game/Entity.h \
-    Game/Entities/Stage.h \
-    Game/Entities/Rectangle.h \
-    Game/Entities/RectangleDef.h \
     Game/Util/DebugDraw.h \
-    Game/Entities/Id.h
+    Game/Entities/Id.h \
+    Game/Entities/WallLeft.h \
+    Game/Entities/Wall.h \
+    Game/Entities/WallDef.h \
+    Game/Entities/WallRight.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wsign-conversion \
     -Wextra \

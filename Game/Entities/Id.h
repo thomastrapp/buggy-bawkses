@@ -26,10 +26,9 @@ namespace Game
         */
         PLAYER      = 1 << 1, 
         PLAYER_FOOT = 1 << 2,
-        STAGE       = 1 << 3,
-        WALL_LEFT   = 1 << 4,
-        WALL_BOTTOM = 1 << 5,
-        WALL_RIGHT  = 1 << 6
+        WALL_LEFT   = 1 << 3,
+        WALL_BOTTOM = 1 << 4,
+        WALL_RIGHT  = 1 << 5
       };
       
       /**
