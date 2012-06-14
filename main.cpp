@@ -14,6 +14,7 @@ int main(int argc, char ** argv)
     boost::shared_ptr<Game::Config> config(new Game::Config);
     config->parse_command_line(argc, argv);
     
+    // if --help is supplied on cmdline
     if( config->is_set("help") )
     {
       config->print_description(std::cout);
@@ -21,6 +22,7 @@ int main(int argc, char ** argv)
     }
   
     Game::Controller controller(config);
+    // start game loop
     controller.start();
   }
   catch( Game::Exception const& e )
@@ -33,7 +35,7 @@ int main(int argc, char ** argv)
 
     return EXIT_FAILURE;
   }
-  // Debug
+  #ifdef DEBUG
   catch( boost::exception const& e )
   {
     std::cerr << "\n########\n"
@@ -44,8 +46,21 @@ int main(int argc, char ** argv)
 
     return EXIT_FAILURE;
   }
+  catch( std::exception const& e)
+  {
+    std::cerr << "\n########\n"
+              << "Error: Caught std::exception (Toplevel): \n" 
+              << boost::diagnostic_information(e) 
+              << "########\n"
+              << std::endl;
+
+    return EXIT_FAILURE;
+  }
+  #endif
   
-  std::cout << "EOF" << std::endl;
+  #ifdef DEBUG
+    std::cout << "EOF" << std::endl;
+  #endif
   return EXIT_SUCCESS;
 }
 
