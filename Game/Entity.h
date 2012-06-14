@@ -21,15 +21,7 @@ namespace Game
 class Entity
 {
 public:
-  /**
-   * @brief Construct Entity
-   *
-   * @param conf A shared_ptr to Game::Config, a class that stores user supplied
-   * configuration, as well as internal key/value pairs.
-   * @param game_world A reference to the global World, which is a wrapper for 
-   * b2World
-   */
-  Entity(boost::shared_ptr<Game::Config> conf, Game::World& game_world);
+  Entity() {}
   
   /**
    * @brief Destruct Entity
@@ -78,17 +70,6 @@ public:
 private:
   Entity(const Entity&);
   Entity& operator=(const Entity&);
-  
-  /**
-   * @brief A shared_ptr to Game::Config, a class that stores user supplied
-   * configuration, as well as internal key/value pairs.
-   */
-  boost::shared_ptr<Game::Config> config;
-  
-  /**
-   * @brief A reference to the global World, which is a wrapper for b2World
-   */
-  Game::World& world;
 };
 
 }
