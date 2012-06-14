@@ -1,4 +1,13 @@
-DEFINES += ENABLE_DEBUG_DRAW
+CONFIG(debug, debug|release) {
+    TARGET = buggy_bawkses_debug
+    DEFINES += ENABLE_DEBUG_DRAW \
+        DEBUG
+}
+
+CONFIG(release, debug|release) { 
+    TARGET = buggy_bawkses
+}
+
 SOURCES += main.cpp \
     Game/Config.cpp \
     Game/Registry.cpp \
@@ -28,7 +37,6 @@ HEADERS += Game/Window.h \
     Game/Entities/Stage.h \
     Game/Entities/Rectangle.h \
     Game/Entities/RectangleDef.h \
-    Game/Entities/Bar.h \
     Game/Entities/Type.h \
     Game/Util/DebugDraw.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
