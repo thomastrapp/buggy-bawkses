@@ -20,7 +20,8 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
       sf::Vector2f( // position
         0.0f,
         static_cast<float>(this->config->get<int>("window-height")) / 2.0f
-      )
+      ),
+      0.0f // friction
     )
   ),
   bottom( // Rectangle
@@ -34,7 +35,8 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
       sf::Vector2f( // position
         static_cast<float>(this->config->get<int>("window-width")) / 2.0f,
         static_cast<float>(this->config->get<int>("window-height"))
-      )
+      ),
+      1.0f // friction
     )
   ),
   right( // Rectangle
@@ -48,7 +50,8 @@ Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
       sf::Vector2f( // position
         static_cast<float>(this->config->get<int>("window-width")),
         static_cast<float>(this->config->get<int>("window-height")) / 2.0f
-      )
+      ),
+      0.0f // friction
     )
   )
 {

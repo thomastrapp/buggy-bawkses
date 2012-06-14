@@ -32,8 +32,8 @@ public:
    * configuration, as well as internal key/value pairs.
    * @param game_world A reference to the global World, which is a wrapper for 
    * b2World
-   * @param rect_def An instance of class RectangleDef, which describes the size 
-   * and position of this rectangle
+   * @param rect_def An instance of class RectangleDef, which describes this
+   * rectangle
    */
   Rectangle(
     boost::shared_ptr<Game::Config> conf, 

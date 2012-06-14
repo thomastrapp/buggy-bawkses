@@ -38,6 +38,7 @@ Rectangle::Rectangle(
     b2FixtureDef fixtureDef;
     fixtureDef.shape = &blockBox;
     fixtureDef.restitution = 0.0f;
+    fixtureDef.friction = rect_def.friction;
     
     this->physics->CreateFixture(&fixtureDef);
   }
