@@ -6,13 +6,10 @@ namespace Game
   {
 
 Rectangle::Rectangle(
-  boost::shared_ptr<Game::Config> conf, 
   Game::World& game_world,
   const Game::Entities::RectangleDef& rect_def
 )
-: Entity(),
-  config(conf),
-  world(game_world),
+: Entity(rect_def.entity_id),
   physics(NULL),
   visible(rect_def.size)
 {
@@ -24,7 +21,7 @@ Rectangle::Rectangle(
       Game::Util::pixel_to_meter(rect_def.pos.y)
     );
     
-    this->physics = this->world.b2world()->CreateBody(&blockDef);
+    this->physics = game_world.b2world()->CreateBody(&blockDef);
   }
   
   // setup the rectangle's appearance in the physics simulation

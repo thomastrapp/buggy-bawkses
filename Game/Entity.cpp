@@ -3,6 +3,16 @@
 namespace Game
 {
 
+Entity::Entity(Game::Entities::Id::t_entities_id id)
+: entity_id(id)
+{
+}
+
+Game::Entities::Id::t_entities_id Entity::get_entity_id() const
+{
+  return this->entity_id;
+}
+
 void Entity::sync_visible(const b2Body * source, sf::Transformable& target)
 {
   if( source == NULL )

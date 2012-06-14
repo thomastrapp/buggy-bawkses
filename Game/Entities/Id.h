@@ -25,14 +25,15 @@ namespace Game
         INVALID     = 1, 
         */
         PLAYER      = 2, 
-        /*
-        BAR         = 4, 
-        */
-        PLAYER_FOOT = 8
+        PLAYER_FOOT = 4,
+        STAGE       = 8,
+        WALL_LEFT   = 16,
+        WALL_BOTTOM = 32,
+        WALL_RIGHT  = 64
       };
       
       /**
-       * @brief Convert t_entities_id value to b2Fixture user data.
+       * @brief Convert a t_entities_id value to b2Fixture user data.
        *
        * Helper function to convert between int and void pointer.
        * Returned pointer must not be referenced.

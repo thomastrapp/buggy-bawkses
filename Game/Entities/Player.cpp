@@ -6,7 +6,7 @@ namespace Game
   {
   
 Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
-: Entity(),
+: Entity(Game::Entities::Id::PLAYER),
   physics(NULL),
   visible(),
   foot_sensor()

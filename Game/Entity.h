@@ -8,6 +8,7 @@
 #include "Game/Config.h"
 #include "Game/World.h"
 #include "Game/Util/Util.h"
+#include "Game/Entities/Id.h"
  
 namespace Game
 {
@@ -21,7 +22,12 @@ namespace Game
 class Entity
 {
 public:
-  Entity() {}
+  /**
+   * @brief Construct Entity
+   *
+   * @param entity_id A distinct Id for this Entity
+   */
+  Entity(Game::Entities::Id::t_entities_id id);
   
   /**
    * @brief Destruct Entity
@@ -56,6 +62,13 @@ public:
   }
   
   /**
+   * @brief Return a distinct Entity Id
+   *
+   * @return Entity Id
+   */
+  Game::Entities::Id::t_entities_id get_entity_id() const;
+  
+  /**
    * @brief Helper function to apply any Box2d transformations of a 
    * b2Body (source) to an sfml shape (target).
    *
@@ -70,6 +83,8 @@ public:
 private:
   Entity(const Entity&);
   Entity& operator=(const Entity&);
+  
+  const Game::Entities::Id::t_entities_id entity_id;
 };
 
 }

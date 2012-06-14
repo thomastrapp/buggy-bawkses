@@ -60,17 +60,6 @@ public:
 private:
   Stage(const Stage&);
   Stage& operator=(const Stage&);
-
-  /**
-   * @brief A shared_ptr to Game::Config, a class that stores user supplied
-   * configuration, as well as internal key/value pairs.
-   */
-  boost::shared_ptr<Game::Config> config;
-  
-  /**
-   * @brief A reference to the global World, which is a wrapper for b2World
-   */
-  Game::World& world;
   
   /**
    * @brief The left wall

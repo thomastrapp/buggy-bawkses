@@ -6,52 +6,50 @@ namespace Game
   {
     
 Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
-: Entity(),
-  config(conf),
-  world(game_world),
+: Entity(Game::Entities::Id::STAGE),
   left( // Rectangle
-    conf,
     game_world,
     Game::Entities::RectangleDef(
       sf::Vector2f( // size
-        this->config->get<float>("stage-walls-width"),
-        static_cast<float>(this->config->get<int>("window-height"))
+        conf->get<float>("stage-walls-width"),
+        static_cast<float>(conf->get<int>("window-height"))
       ), 
       sf::Vector2f( // position
         0.0f,
-        static_cast<float>(this->config->get<int>("window-height")) / 2.0f
+        static_cast<float>(conf->get<int>("window-height")) / 2.0f
       ),
-      0.0f // friction
+      0.0f, // friction
+      Game::Entities::Id::WALL_LEFT
     )
   ),
   bottom( // Rectangle
-    conf,
     game_world,
     Game::Entities::RectangleDef(
       sf::Vector2f( // size
-        static_cast<float>(this->config->get<int>("window-width")), 
-        this->config->get<float>("stage-walls-width")
+        static_cast<float>(conf->get<int>("window-width")), 
+        conf->get<float>("stage-walls-width")
       ), 
       sf::Vector2f( // position
-        static_cast<float>(this->config->get<int>("window-width")) / 2.0f,
-        static_cast<float>(this->config->get<int>("window-height"))
+        static_cast<float>(conf->get<int>("window-width")) / 2.0f,
+        static_cast<float>(conf->get<int>("window-height"))
       ),
-      1.0f // friction
+      1.0f, // friction
+      Game::Entities::Id::WALL_BOTTOM
     )
   ),
   right( // Rectangle
-    conf, 
     game_world,
     Game::Entities::RectangleDef(
       sf::Vector2f( // size
-        this->config->get<float>("stage-walls-width"),
-        static_cast<float>(this->config->get<int>("window-height"))
+        conf->get<float>("stage-walls-width"),
+        static_cast<float>(conf->get<int>("window-height"))
       ), 
       sf::Vector2f( // position
-        static_cast<float>(this->config->get<int>("window-width")),
-        static_cast<float>(this->config->get<int>("window-height")) / 2.0f
+        static_cast<float>(conf->get<int>("window-width")),
+        static_cast<float>(conf->get<int>("window-height")) / 2.0f
       ),
-      0.0f // friction
+      0.0f, // friction
+      Game::Entities::Id::WALL_RIGHT
     )
   )
 {
