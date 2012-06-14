@@ -69,6 +69,32 @@ public:
   Game::Entities::Id::t_entities_id get_entity_id() const;
   
   /**
+   * @brief Callback for beginning of a collision
+   *
+   * If the entity registered itself for collision notification, this method 
+   * will be called. The other participant of the collision is passed as a 
+   * pointer to a b2Fixture.
+   * 
+   * Subclasses may implement this method.
+   */
+  virtual void beginCollision(b2Fixture * /* collision_partner */)
+  {
+  }
+  
+  /**
+   * @brief Callback for ending of a collision
+   *
+   * If the entity registered itself for collision notification, this method 
+   * will be called. The other participant of the collision is passed as a 
+   * pointer to a b2Fixture.
+   * 
+   * Subclasses may implement this method.
+   */
+  virtual void endCollision(b2Fixture * /* collision_partner */)
+  {
+  }
+  
+  /**
    * @brief Helper function to apply any Box2d transformations of a 
    * b2Body (source) to an sfml shape (target).
    *
