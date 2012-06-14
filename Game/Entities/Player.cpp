@@ -6,7 +6,7 @@ namespace Game
   {
   
 Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
-: Entity(conf, game_world),
+: Entity(),
   physics(NULL),
   visible(),
   foot_sensor()
@@ -49,7 +49,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     fixtureDef.friction = conf->get<float>("player-friction");
     b2Fixture * playerFixture = this->physics->CreateFixture(&fixtureDef);
     playerFixture->SetUserData(
-      Game::Entities::Type::to_user_data(Game::Entities::Type::PLAYER)
+      Game::Entities::Id::to_user_data(Game::Entities::Id::PLAYER)
     );
   }
   
@@ -87,7 +87,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     // We need to mark this fixture as PLAYER_FOOT to distinguish
     // its collisions from other fixtures' collsisions.
     footSensorFixture->SetUserData(
-      Game::Entities::Type::to_user_data(Game::Entities::Type::PLAYER_FOOT)
+      Game::Entities::Id::to_user_data(Game::Entities::Id::PLAYER_FOOT)
     );
     
     game_world.b2world()->SetContactListener(&(this->foot_sensor));
@@ -203,9 +203,9 @@ bool Player::FootContactListener::_fixture_is_player_foot(b2Fixture* fixture)
   }
   else
   {
-    const Type::t_entities_type entity_type = Type::to_entity_type(user_data);
+    const Id::t_entities_id entity_id = Id::to_entity_id(user_data);
 
-    return ( entity_type == Type::PLAYER_FOOT );
+    return ( entity_id == Id::PLAYER_FOOT );
   }
 }
 

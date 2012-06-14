@@ -10,7 +10,7 @@ Rectangle::Rectangle(
   Game::World& game_world,
   const Game::Entities::RectangleDef& rect_def
 )
-: Entity(conf, game_world),
+: Entity(),
   config(conf),
   world(game_world),
   physics(NULL),

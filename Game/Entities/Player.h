@@ -7,7 +7,7 @@
 #include "Game/World.h"
 #include "Game/Util/Util.h"
 #include "Game/Entity.h"
-#include "Game/Entities/Type.h"
+#include "Game/Entities/Id.h"
 
 namespace Game
 {
@@ -43,7 +43,8 @@ class Player : public Game::Entity
        * @brief Record start of collisions
        *
        * Increments private member foot_contacts if any of the fixtures subject 
-       * to this collision are the Player's foot (fixtures marked PLAYER_FOOT).
+       * to this collision are the Player's foot (fixtures with Entity Id
+       * PLAYER_FOOT).
        *
        * Throws Game::Exception if contact is NULL.
        *
@@ -57,7 +58,8 @@ class Player : public Game::Entity
        * @brief Record end of collisions
        *
        * Decrements private member foot_contacts if any of the fixtures subject 
-       * to this collision are the Player's foot (fixtures marked PLAYER_FOOT).
+       * to this collision are the Player's foot (fixtures with Entity Id 
+       * PLAYER_FOOT).
        *
        * Throws Game::Exception if contact is NULL.
        *
@@ -85,7 +87,7 @@ class Player : public Game::Entity
       /**
        * @brief Check if a b2Fixture is the Player's foot
        *
-       * Checks if given fixture is marked PLAYER_FOOT.
+       * Checks if given fixture has Entitiy Id PLAYER_FOOT.
        *
        * Throws Game::Exception if fixture is NULL.
        *
@@ -106,8 +108,8 @@ public:
   /**
    * @brief Construct a new Player
    *
-   * @param conf A shared_ptr to Game::Config, a class that stores user supplied
-   * configuration, as well as internal key/value pairs.
+   * @param conf A shared_ptr to Game::Config, a class that stores user 
+   * supplied configuration, as well as internal key/value pairs.
    * @param game_world A reference to the global World, which is a wrapper for 
    * b2World
    */

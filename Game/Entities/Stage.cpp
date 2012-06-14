@@ -6,7 +6,7 @@ namespace Game
   {
     
 Stage::Stage(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
-: Entity(conf, game_world),
+: Entity(),
   config(conf),
   world(game_world),
   left( // Rectangle

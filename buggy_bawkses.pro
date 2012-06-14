@@ -18,8 +18,8 @@ SOURCES += main.cpp \
     Game/Entity.cpp \
     Game/Entities/Stage.cpp \
     Game/Entities/Rectangle.cpp \
-    Game/Entities/Type.cpp \
-    Game/Util/DebugDraw.cpp
+    Game/Util/DebugDraw.cpp \
+    Game/Entities/Id.cpp
 LIBS += -lsfml-graphics \
     -lsfml-window \
     -lsfml-system \
@@ -37,8 +37,8 @@ HEADERS += Game/Window.h \
     Game/Entities/Stage.h \
     Game/Entities/Rectangle.h \
     Game/Entities/RectangleDef.h \
-    Game/Entities/Type.h \
-    Game/Util/DebugDraw.h
+    Game/Util/DebugDraw.h \
+    Game/Entities/Id.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wsign-conversion \
     -Wextra \
