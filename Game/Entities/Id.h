@@ -22,14 +22,14 @@ namespace Game
        */
       enum t_entities_id {
         /*
-        INVALID     = 1, 
+        INVALID     = 1 << 0, 
         */
-        PLAYER      = 2, 
-        PLAYER_FOOT = 4,
-        STAGE       = 8,
-        WALL_LEFT   = 16,
-        WALL_BOTTOM = 32,
-        WALL_RIGHT  = 64
+        PLAYER      = 1 << 1, 
+        PLAYER_FOOT = 1 << 2,
+        STAGE       = 1 << 3,
+        WALL_LEFT   = 1 << 4,
+        WALL_BOTTOM = 1 << 5,
+        WALL_RIGHT  = 1 << 6
       };
       
       /**
