@@ -11,7 +11,7 @@ WallRight::WallRight(
 )
 : Wall(
     game_world,
-    Game::Entities::WallDef(
+    Game::Entities::RectangleDef(
       sf::Vector2f( // size
         conf->get<float>("stage-walls-width"),
         static_cast<float>(conf->get<int>("window-height"))

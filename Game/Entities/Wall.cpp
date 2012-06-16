@@ -7,18 +7,18 @@ namespace Entities
 
 Wall::Wall(
   Game::World& game_world,
-  const Game::Entities::WallDef& wall_def
+  const Game::Entities::RectangleDef& rect_def
 )
 : Entity(Game::Entities::Id::WALL),
   physics(NULL),
-  visible(wall_def.size)
+  visible(rect_def.size)
 {
   // setup the Wall
   {
     b2BodyDef blockDef;
     blockDef.position.Set(
-      Game::Util::pixel_to_meter(wall_def.pos.x),
-      Game::Util::pixel_to_meter(wall_def.pos.y)
+      Game::Util::pixel_to_meter(rect_def.pos.x),
+      Game::Util::pixel_to_meter(rect_def.pos.y)
     );
     
     this->physics = game_world.b2world()->CreateBody(&blockDef);
@@ -28,8 +28,8 @@ Wall::Wall(
   {
     b2PolygonShape blockBox;
     blockBox.SetAsBox(
-      Game::Util::pixel_to_meter(wall_def.size.x / 2.0f),
-      Game::Util::pixel_to_meter(wall_def.size.y / 2.0f)
+      Game::Util::pixel_to_meter(rect_def.size.x / 2.0f),
+      Game::Util::pixel_to_meter(rect_def.size.y / 2.0f)
     );
     
     b2FixtureDef fixtureDef;
@@ -43,8 +43,8 @@ Wall::Wall(
   // visible (sfml RectangleShape that gets rendered on screen)
   {
     this->visible.setFillColor(sf::Color(0, 255, 0));
-    this->visible.setOrigin(wall_def.size / 2.0f);
-    this->visible.setPosition(wall_def.pos);
+    this->visible.setOrigin(rect_def.size / 2.0f);
+    this->visible.setPosition(rect_def.pos);
   }
 }
 

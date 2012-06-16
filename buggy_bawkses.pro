@@ -42,12 +42,12 @@ HEADERS += Game/Window.h \
     Game/Entities/Id.h \
     Game/Entities/WallLeft.h \
     Game/Entities/Wall.h \
-    Game/Entities/WallDef.h \
     Game/Entities/WallRight.h \
     Game/CollisionDispatcher.h \
     Game/Entities/UserData.h \
     Game/Entities/PlayerFoot.h \
-    Game/Entities/Bar.h
+    Game/Entities/Bar.h \
+    Game/Entities/RectangleDef.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wsign-conversion \
     -Wextra \

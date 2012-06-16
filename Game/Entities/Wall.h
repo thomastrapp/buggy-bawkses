@@ -8,7 +8,7 @@
 
 #include "Game/Config.h"
 #include "Game/Entity.h"
-#include "Game/Entities/WallDef.h"
+#include "Game/Entities/RectangleDef.h"
 
 namespace Game
 {
