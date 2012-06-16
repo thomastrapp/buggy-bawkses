@@ -14,8 +14,8 @@ namespace Entities
  * @brief A helper class that defines a position and size for a Wall.
  * 
  * An instance of WallDef is passed to the constructor of Wall to
- * build a static Wall of specified size (WallDef::size), 
- * position (WallDef::pos) and Entity Id (WallDef::entity_id).
+ * build a static Wall of specified size (WallDef::size) and
+ * position (WallDef::pos).
  */
 class WallDef
 {
@@ -25,16 +25,13 @@ public:
    *
    * @param wall_size The total size of the Wall: width (x) and length (y)
    * @param wall_pos The global position of the Wall on the stage
-   * @param id The distinct Entity Id of the Wall
    */
   WallDef(
     const sf::Vector2f& wall_size, 
-    const sf::Vector2f& wall_pos,
-    Game::Entities::Id::t_entities_id id
+    const sf::Vector2f& wall_pos
   )
   : size(wall_size),
-    pos(wall_pos),
-    entity_id(id)
+    pos(wall_pos)
   {
   }
 
@@ -47,11 +44,6 @@ public:
    * @brief The global position of the Wall on the stage
    */
   const sf::Vector2f pos;
-  
-  /**
-   * @brief The Wall's Entity Id
-   */
-  const Game::Entities::Id::t_entities_id entity_id;
 
 private:
   WallDef(const WallDef&);

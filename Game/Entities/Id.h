@@ -16,9 +16,6 @@ namespace Game
     {
       /**
        * @brief The t_entities_id enum defines constants for Entity Ids.
-       *
-       * These constants may then be used to identify participants in 
-       * collisions.
        */
       enum t_entities_id {
         /*
@@ -26,9 +23,8 @@ namespace Game
         */
         PLAYER      = 1 << 1, 
         PLAYER_FOOT = 1 << 2,
-        WALL_LEFT   = 1 << 3,
-        WALL_BOTTOM = 1 << 4,
-        WALL_RIGHT  = 1 << 5
+        WALL        = 1 << 3,
+        BAR         = 1 << 4
       };
     }
   }

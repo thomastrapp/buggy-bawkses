@@ -17,10 +17,13 @@ SOURCES += main.cpp \
     Game/Entities/Player.cpp \
     Game/Entity.cpp \
     Game/Util/DebugDraw.cpp \
-    Game/Entities/Id.cpp \
     Game/Entities/WallLeft.cpp \
     Game/Entities/WallRight.cpp \
-    Game/Entities/Wall.cpp
+    Game/Entities/Wall.cpp \
+    Game/CollisionDispatcher.cpp \
+    Game/Entities/UserData.cpp \
+    Game/Entities/PlayerFoot.cpp \
+    Game/Entities/Bar.cpp
 LIBS += -lsfml-graphics \
     -lsfml-window \
     -lsfml-system \
@@ -40,7 +43,11 @@ HEADERS += Game/Window.h \
     Game/Entities/WallLeft.h \
     Game/Entities/Wall.h \
     Game/Entities/WallDef.h \
-    Game/Entities/WallRight.h
+    Game/Entities/WallRight.h \
+    Game/CollisionDispatcher.h \
+    Game/Entities/UserData.h \
+    Game/Entities/PlayerFoot.h \
+    Game/Entities/Bar.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wsign-conversion \
     -Wextra \

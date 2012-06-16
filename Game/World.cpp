@@ -87,12 +87,26 @@ namespace Game
       this->entities.push_back(ptr_right);
     }
     
+    this->_setup_bars();
+    
     // player
     {
       boost::shared_ptr<Game::Entity> ptr_player(
         new Game::Entities::Player(this->config, *this)
       );
       this->entities.push_back(ptr_player);
+    }
+  }
+  
+  void World::_setup_bars()
+  {
+    // bottom bar
+    {
+    /*
+      boost::shared_ptr<Game::Entity> ptr_bar(
+        new Game::Entities::Bar()
+      );
+      this->entities.push_back(ptr_bar);*/
     }
   }
 }

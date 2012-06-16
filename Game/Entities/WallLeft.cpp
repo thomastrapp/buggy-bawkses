@@ -19,8 +19,7 @@ WallLeft::WallLeft(
       sf::Vector2f( // position
         0.0f,
         static_cast<float>(conf->get<int>("window-height")) / 2.0f
-      ),
-      Game::Entities::Id::WALL_LEFT
+      )
     )
   )
 {

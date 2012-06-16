@@ -19,8 +19,7 @@ WallRight::WallRight(
       sf::Vector2f( // position
         static_cast<float>(conf->get<int>("window-width")),
         static_cast<float>(conf->get<int>("window-height")) / 2.0f
-      ),
-      Game::Entities::Id::WALL_RIGHT
+      )
     )
   )
 {

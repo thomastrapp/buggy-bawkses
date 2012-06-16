@@ -82,9 +82,14 @@ namespace Game
     void _setup_entities();
     
     /**
+     * @brief Add bars
+     */
+    void _setup_bars();
+    
+    /**
      * @brief A shared_ptr to a Box2d b2World
      */
-    boost::shared_ptr<b2World>      b2_world;
+    boost::shared_ptr<b2World> b2_world;
     
     /**
      * @brief A shared_ptr to Game::Config, a class that stores user supplied

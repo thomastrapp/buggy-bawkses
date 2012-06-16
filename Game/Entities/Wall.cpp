@@ -9,7 +9,7 @@ Wall::Wall(
   Game::World& game_world,
   const Game::Entities::WallDef& wall_def
 )
-: Entity(wall_def.entity_id),
+: Entity(Game::Entities::Id::WALL),
   physics(NULL),
   visible(wall_def.size)
 {
