@@ -53,9 +53,5 @@ void Wall::render(sf::RenderTarget& renderer)
   renderer.draw(this->visible);
 }
 
-void Wall::update()
-{
-}
-
 }
 }

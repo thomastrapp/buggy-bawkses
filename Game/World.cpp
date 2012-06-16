@@ -14,9 +14,11 @@ namespace Game
       conf->get<float>("gravity-y")
     ))),
     config(conf),
-    entities()
+    entities(),
+    cdispatcher()
   {
     this->b2_world->SetAllowSleeping(conf->get<bool>("allow-sleeping"));
+    this->b2_world->SetContactListener(&(this->cdispatcher));
     this->_setup_entities();
   }
   

@@ -9,6 +9,7 @@
 
 #include "Game/Window.h"
 #include "Game/Config.h"
+#include "Game/CollisionDispatcher.h"
 
 namespace Game
 {
@@ -16,7 +17,7 @@ namespace Game
   class Entity;
   
   /**
-   * @brief A vector containing elements of type Entity
+   * @brief A vector-type containing elements of type Entity
    */
   typedef std::vector< boost::shared_ptr<Game::Entity> > t_entities;
 
@@ -64,6 +65,9 @@ namespace Game
     /**
      * @brief Return a shared_pointer to a Box2d b2World
      *
+     * Since b2World is not intended to be used as a public base class (e.g. no
+     * virtual destructor), we let any caller have access to it.
+     *
      * @return boost::shared_ptr<b2World> A shared pointer to b2World
      */
     boost::shared_ptr<b2World> b2world() const;
@@ -92,6 +96,11 @@ namespace Game
      * @brief A vector filled with entities
      */
     t_entities entities;
+    
+    /**
+     * @brief Dispatches collision events to entities
+     */
+    CollisionDispatcher cdispatcher;
   };
 }
 

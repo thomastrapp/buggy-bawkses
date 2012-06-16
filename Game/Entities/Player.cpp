@@ -9,7 +9,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
 : Entity(Game::Entities::Id::PLAYER),
   physics(NULL),
   visible(),
-  foot_sensor()
+  foot()
 {
   // setup the player
   {
@@ -35,6 +35,19 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     conf->get<float>("player-size-y")
   );
   
+  /**
+   * To easily detect Player collision with "grounds" we set up a foot, that
+   * does not participate in the physics simulation, but is subject to 
+   * collisions.
+   * 
+   * We pass a pointer to this to the user data of the fixture, to instruct 
+   * the CollisionDispatcher to notify us if we collide with anything.
+   *
+   * We therefore can later determine whether the Player is in air or on solid
+   * ground ("Can the player jump?").
+   */
+  this->foot.bind_to_body(this->physics, player_size);
+  
   // setup the player's appearance in the physics simulation
   {
     b2PolygonShape playerBox;
@@ -47,50 +60,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     fixtureDef.shape = &playerBox;
     fixtureDef.density = conf->get<float>("player-density");
     fixtureDef.friction = conf->get<float>("player-friction");
-    b2Fixture * playerFixture = this->physics->CreateFixture(&fixtureDef);
-    playerFixture->SetUserData(
-      Game::Entities::Id::to_user_data(Game::Entities::Id::PLAYER)
-    );
-  }
-  
-  // Player foot
-  {
-    /**
-     * To easily detect Player collision with "grounds" we set up a foot, that
-     * does not participate in the physics simulation, but is subject to 
-     * collisions.
-     * We then tell box2d to notify our FootContactListener (which derives from 
-     * b2ContactListener) when any collisions happen.
-     *
-     * We therefore can later determine whether the Player is in air or on solid
-     * ground ("Can the player jump?").
-     */
-    
-    b2PolygonShape footShape;
-    footShape.SetAsBox(
-      Game::Util::pixel_to_meter(player_size.x) / 2.0f,
-      Game::Util::pixel_to_meter(player_size.x) / 2.0f,
-      b2Vec2(
-        0.0f,
-        Game::Util::pixel_to_meter(player_size.y)
-      ),
-      0.0f
-    );
-    
-    b2FixtureDef footFixtureDef;
-    footFixtureDef.shape = &footShape;
-    footFixtureDef.isSensor = true;
-    
-    b2Fixture * footSensorFixture = 
-      this->physics->CreateFixture(&footFixtureDef);
-    
-    // We need to mark this fixture as PLAYER_FOOT to distinguish
-    // its collisions from other fixtures' collsisions.
-    footSensorFixture->SetUserData(
-      Game::Entities::Id::to_user_data(Game::Entities::Id::PLAYER_FOOT)
-    );
-    
-    game_world.b2world()->SetContactListener(&(this->foot_sensor));
+    this->physics->CreateFixture(&fixtureDef);
   }
   
   // visible (sfml shape that gets rendered on screen)
@@ -115,7 +85,7 @@ void Player::handle_input(const sf::Event& event)
   {
     case sf::Keyboard::Up:
     {
-      if( this->foot_sensor.is_foot_on_ground() )
+      if( this->foot.is_on_ground() )
       {
         this->physics->ApplyLinearImpulse(
           b2Vec2(0.0f, -0.3f), this->physics->GetPosition()
@@ -152,66 +122,6 @@ void Player::render(sf::RenderTarget& renderer)
 void Player::update()
 {
   this->sync_visible(this->physics, this->visible);
-}
-
-Player::FootContactListener::FootContactListener()
-: foot_contacts(0)
-{
-}
-
-void Player::FootContactListener::BeginContact(b2Contact* contact)
-{
-  if( contact == NULL )
-  {
-    BOOST_THROW_EXCEPTION(Game::Exception());
-  }
-  
-  if( this->_fixture_is_player_foot(contact->GetFixtureA()) ||
-      this->_fixture_is_player_foot(contact->GetFixtureB())    )
-  {
-    ++this->foot_contacts;
-  }
-}
-
-void Player::FootContactListener::EndContact(b2Contact* contact)
-{
-  if( contact == NULL )
-  {
-    BOOST_THROW_EXCEPTION(Game::Exception());
-  }
-
-  if( this->_fixture_is_player_foot(contact->GetFixtureA()) ||
-      this->_fixture_is_player_foot(contact->GetFixtureB())    )
-  {
-    --this->foot_contacts;
-  }
-}
-
-bool Player::FootContactListener::_fixture_is_player_foot(b2Fixture* fixture)
-{
-  if( fixture == NULL )
-  {
-    BOOST_THROW_EXCEPTION(Game::Exception());
-  }
-  
-  using namespace Game::Entities;
-  
-  void * user_data = fixture->GetUserData();
-  if( user_data == NULL )
-  {
-    return false;
-  }
-  else
-  {
-    const Id::t_entities_id entity_id = Id::to_entity_id(user_data);
-
-    return ( entity_id == Id::PLAYER_FOOT );
-  }
-}
-
-bool Player::FootContactListener::is_foot_on_ground()
-{
-  return ( this->foot_contacts > 0 );
 }
 
   }

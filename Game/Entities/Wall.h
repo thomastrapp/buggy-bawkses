@@ -44,11 +44,6 @@ public:
    * @param renderer The canvas to draw on
    */
   void render(sf::RenderTarget& renderer);
-  
-  /**
-   * @brief Update this Wall
-   */
-  void update();
 
 private:
   Wall(const Wall&);

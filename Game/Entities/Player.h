@@ -8,6 +8,7 @@
 #include "Game/Util/Util.h"
 #include "Game/Entity.h"
 #include "Game/Entities/Id.h"
+#include "Game/Entities/PlayerFoot.h"
 
 namespace Game
 {
@@ -22,87 +23,6 @@ namespace Game
  */
 class Player : public Game::Entity
 {
-  /**
-   * @brief Listens on collisions of the Player's foot
-   *
-   * Box2d calls BeginContact and EndContact of this class, when a fixture 
-   * has contact to another fixture. This class then increments/decrements 
-   * a private member if the Player's foot was subject to the collision.
-   * 
-   * E.g. the method is_foot_on_ground() can then be used to determine whether 
-   * the player is able to jump.
-   *
-   */
-  class FootContactListener : public b2ContactListener
-  {
-    public:
-      FootContactListener();
-      ~FootContactListener() {}
-      
-      /**
-       * @brief Record start of collisions
-       *
-       * Increments private member foot_contacts if any of the fixtures subject 
-       * to this collision are the Player's foot (fixtures with Entity Id
-       * PLAYER_FOOT).
-       *
-       * Throws Game::Exception if contact is NULL.
-       *
-       * @param contact Contains pointers to two b2fixtures that are subject to
-       * this collision
-       * @throws Game::Exception
-       */
-      void BeginContact(b2Contact* contact);
-
-      /**
-       * @brief Record end of collisions
-       *
-       * Decrements private member foot_contacts if any of the fixtures subject 
-       * to this collision are the Player's foot (fixtures with Entity Id 
-       * PLAYER_FOOT).
-       *
-       * Throws Game::Exception if contact is NULL.
-       *
-       * @param contact Contains pointers to two b2fixtures that are subject to 
-       * this collision
-       * @throws Game::Exception
-       */
-      void EndContact(b2Contact* contact);
-      
-      /**
-       * @brief Check if Player's foot is on ground
-       *
-       * If true, the Player's foot is currently colliding with solid ground, 
-       * meaning BeginContact recorded more collisions with solid ground than 
-       * End Contact.
-       *
-       * @return true if Player is on ground
-       */
-      bool is_foot_on_ground();
-            
-    private:
-      FootContactListener(const FootContactListener&);
-      FootContactListener& operator=(const FootContactListener&);
-      
-      /**
-       * @brief Check if a b2Fixture is the Player's foot
-       *
-       * Checks if given fixture has Entitiy Id PLAYER_FOOT.
-       *
-       * Throws Game::Exception if fixture is NULL.
-       *
-       * @param fixture A non NULL fixture
-       * @return true if fixture's user data is PLAYER_FOOT
-       * @throws Game::Exception
-       */
-      bool _fixture_is_player_foot(b2Fixture* fixture);
-      
-      /**
-       * @brief A counter that is incremented/decremented when
-       * BeginContact()/EndContact() is called
-       */
-      unsigned int foot_contacts;
-  };
 
 public:
   /**
@@ -161,7 +81,7 @@ private:
   /**
    * @brief A helper class to determine whether the Player can jump
    */
-  FootContactListener foot_sensor;
+  PlayerFoot foot;
 };
 
   }

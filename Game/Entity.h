@@ -48,9 +48,9 @@ public:
   /**
    * @brief Update this Entity
    *
-   * All subclasses must implement this method.
+   * Subclasses may implement this method.
    */
-  virtual void update() = 0;
+  virtual void update() {}
   
   /**
    * @brief To pass user supplied input to a Entity
@@ -71,26 +71,28 @@ public:
   /**
    * @brief Callback for beginning of a collision
    *
-   * If the entity registered itself for collision notification, this method 
-   * will be called. The other participant of the collision is passed as a 
-   * pointer to a b2Fixture.
+   * If the entity was stored as user data in a fixture and the fixture took
+   * part in a collision, this method will be called.
+   * 
+   * Information about the collision is passed as a b2Contact.
    * 
    * Subclasses may implement this method.
    */
-  virtual void beginCollision(b2Fixture * /* collision_partner */)
+  virtual void begin_collision(b2Contact * /* collision_info */)
   {
   }
   
   /**
    * @brief Callback for ending of a collision
    *
-   * If the entity registered itself for collision notification, this method 
-   * will be called. The other participant of the collision is passed as a 
-   * pointer to a b2Fixture.
+   * If the entity was stored as user data in a fixture and the fixture took
+   * part in a collision, this method will be called.
+   * 
+   * Information about the collision is passed as a b2Contact.
    * 
    * Subclasses may implement this method.
    */
-  virtual void endCollision(b2Fixture * /* collision_partner */)
+  virtual void end_collision(b2Contact * /* collision_info */)
   {
   }
   
