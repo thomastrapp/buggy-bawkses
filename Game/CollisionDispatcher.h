@@ -45,6 +45,9 @@ public:
    */
   void EndContact(b2Contact* contact);
   
+  void PreSolve(b2Contact* contact, const b2Manifold* old_manifold);
+  void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
+  
 private:
   CollisionDispatcher(const CollisionDispatcher&);
   CollisionDispatcher& operator=(const CollisionDispatcher&);

@@ -6,7 +6,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Game/Config.h"
-#include "Game/World.h"
 #include "Game/Util/Util.h"
 #include "Game/Entities/Id.h"
  
@@ -93,6 +92,34 @@ public:
    * Subclasses may implement this method.
    */
   virtual void end_collision(b2Contact * /* collision_info */)
+  {
+  }
+  
+  /**
+   * @brief Callback for pre solving of collisions
+   *
+   * Information about the collision is passed as a b2Contact.
+   * 
+   * Subclasses may implement this method.
+   */
+  virtual void pre_solve_collision(
+    b2Contact * /* collision_info */,
+    const b2Manifold * /* old_manifold */
+  )
+  {
+  }
+  
+  /**
+   * @brief Callback for post solving of collisions
+   *
+   * Information about the collision is passed as a b2Contact.
+   * 
+   * Subclasses may implement this method.
+   */
+  virtual void post_solve_collision(
+    b2Contact * /* collision_info */,
+    const b2ContactImpulse * /* impulse */
+  )
   {
   }
   

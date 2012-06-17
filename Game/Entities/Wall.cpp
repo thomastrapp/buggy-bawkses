@@ -1,4 +1,5 @@
 #include "Game/Entities/Wall.h"
+#include "Game/World.h"
 
 namespace Game
 {

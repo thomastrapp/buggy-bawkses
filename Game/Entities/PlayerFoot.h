@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Game/Entity.h"
+#include "Game/Entities/UserData.h"
 
 namespace Game
 {

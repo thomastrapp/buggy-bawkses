@@ -3,8 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Game/Entities/Id.h"
-
 namespace Game
 {
 namespace Entities

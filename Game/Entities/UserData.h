@@ -7,7 +7,6 @@
 
 namespace Game
 {
-  // solve circular dependencies
   class Entity;
   
 namespace Entities

@@ -100,13 +100,30 @@ namespace Game
   
   void World::_setup_bars()
   {
-    // bottom bar
+    const int num_bars = 5;
+    const float bar_spacing = 100.0f;
+    const float walls_width = this->config->get<float>("stage-walls-width");
+    const float stage_width = 
+      static_cast<float>(this->config->get<int>("window-width"));
+    const float stage_height = 
+      static_cast<float>(this->config->get<int>("window-height"));
+    
+    for(int i = 0; i < num_bars; ++i)
     {
-    /*
-      boost::shared_ptr<Game::Entity> ptr_bar(
-        new Game::Entities::Bar()
+      Game::Entities::RectangleDef rect_def(
+        sf::Vector2f(
+          stage_width,
+          walls_width / 2.0f
+        ),
+        sf::Vector2f(
+          stage_width / 2.0f,
+          stage_height - static_cast<float>(i) * bar_spacing
+        )
       );
-      this->entities.push_back(ptr_bar);*/
+      boost::shared_ptr<Game::Entity> ptr_bar(
+        new Game::Entities::Bar(this->config, *this, rect_def)
+      );
+      this->entities.push_back(ptr_bar);
     }
   }
 }

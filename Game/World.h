@@ -10,6 +10,8 @@
 #include "Game/Window.h"
 #include "Game/Config.h"
 #include "Game/CollisionDispatcher.h"
+#include "Game/Entities/RectangleDef.h"
+#include "Game/Entities/Bar.h"
 
 namespace Game
 {

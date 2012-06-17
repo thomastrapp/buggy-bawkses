@@ -17,7 +17,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
       static_cast<float>(conf->get<int>("window-width")),
       static_cast<float>(conf->get<int>("window-height"))
     );
-    sf::Vector2f box_center_coord(stage_size.x / 2.0f, stage_size.y / 2.0f);
+    sf::Vector2f box_center_coord(stage_size.x / 2.0f, stage_size.y - 100.0f);
     b2BodyDef playerDef;
     playerDef.type = b2_dynamicBody;
     // disable rotation, player shall always be upright
@@ -60,7 +60,8 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
     fixtureDef.shape = &playerBox;
     fixtureDef.density = conf->get<float>("player-density");
     fixtureDef.friction = conf->get<float>("player-friction");
-    this->physics->CreateFixture(&fixtureDef);
+    b2Fixture * fixture = this->physics->CreateFixture(&fixtureDef);
+    fixture->SetUserData(Game::Entities::UserData::to_user_data(this));
   }
   
   // visible (sfml shape that gets rendered on screen)
@@ -88,7 +89,7 @@ void Player::handle_input(const sf::Event& event)
       if( this->foot.is_on_ground() )
       {
         this->physics->ApplyLinearImpulse(
-          b2Vec2(0.0f, -0.3f), this->physics->GetPosition()
+          b2Vec2(0.0f, -0.25f), this->physics->GetPosition()
         );
       }
       break;

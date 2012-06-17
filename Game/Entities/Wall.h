@@ -12,6 +12,7 @@
 
 namespace Game
 {
+  class World;
 namespace Entities
 {
 
