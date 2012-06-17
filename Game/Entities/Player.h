@@ -23,7 +23,6 @@ namespace Game
  */
 class Player : public Game::Entity
 {
-
 public:
   /**
    * @brief Construct a new Player
@@ -58,14 +57,26 @@ public:
    * Applies forces to the physics simulation based on user input.
    * Player may only jump if the Player's foot is on ground.
    *
-   * @param event event.type must equal sf::Event::KeyPressed
+   * @param event The event containing relevant user input
    * @throws Game::Exception
    */
-  void handle_input(const sf::Event& event);
+  void handle_input(const sf::Event& input);
 
 private:
   Player(const Player&);
   Player& operator=(const Player&);
+  
+  void _handle_key_press(const sf::Event& input);
+  void _handle_key_release(const sf::Event& input);
+  
+  enum t_move_state {
+    //MOVEMENT_INVALID = 1 << 0,
+    MOVEMENT_STOPPED = 1 << 1,
+    MOVEMENT_LEFT    = 1 << 2,
+    MOVEMENT_RIGHT   = 1 << 3
+  };
+  
+  boost::shared_ptr<Game::Config> config;
 
   /**
    * @brief The physical representation of a Player. Memory is owned by 
@@ -82,6 +93,8 @@ private:
    * @brief A helper class to determine whether the Player can jump
    */
   PlayerFoot foot;
+  
+  Player::t_move_state current_move_state; 
 };
 
   }

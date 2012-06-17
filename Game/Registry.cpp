@@ -93,6 +93,9 @@ namespace Game
       std::pair<std::string, t_reg_value>("player-friction", 1.0f)
     );
     this->reg.insert(
+      std::pair<std::string, t_reg_value>("player-top-speed", 30.0f)
+    );
+    this->reg.insert(
       std::pair<std::string, t_reg_value>("stage-walls-width", 20.0f)
     );
     this->reg.insert(

@@ -62,7 +62,7 @@ namespace Game
      *
      * @param event 
      */
-    void handle_input(const sf::Event& event);
+    void handle_input(const sf::Event& input);
     
     /**
      * @brief Return a shared_pointer to a Box2d b2World

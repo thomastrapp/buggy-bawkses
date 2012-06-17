@@ -7,9 +7,11 @@ namespace Game
   
 Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
 : Entity(Game::Entities::Id::PLAYER),
+  config(conf),
   physics(NULL),
   visible(),
-  foot()
+  foot(),
+  current_move_state(MOVEMENT_STOPPED)
 {
   // setup the player
   {
@@ -74,15 +76,75 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   }
 }
 
-void Player::handle_input(const sf::Event& event)
+void Player::handle_input(const sf::Event& input)
 {
-  // Be defensive
-  if( event.type != sf::Event::KeyPressed )
+  if( input.type == sf::Event::KeyPressed )
   {
-    BOOST_THROW_EXCEPTION(Game::Exception());
+    this->_handle_key_press(input);
+  }
+  else if( input.type == sf::Event::KeyReleased )
+  {
+    this->_handle_key_release(input);
+  }
+}
+
+void Player::render(sf::RenderTarget& renderer)
+{
+  renderer.draw(this->visible);
+}
+
+void Player::update()
+{
+  static const float player_top_speed = 
+    this->config->get<float>("player-top-speed");
+  
+  b2Vec2 current_velocity = this->physics->GetLinearVelocity();
+  float to_velocity = current_velocity.x;
+
+  switch(this->current_move_state)
+  {
+    case MOVEMENT_LEFT:
+    {
+      to_velocity = b2Max(current_velocity.x - 0.3f, -1 * player_top_speed);
+      break;
+    }
+    case MOVEMENT_STOPPED:
+    {
+      if( current_velocity.x > 0 )
+      {
+        to_velocity = b2Max(current_velocity.x - 0.4f, 0.0f);
+      }
+      else
+      {
+        to_velocity = b2Min(current_velocity.x + 0.4f, 0.0f);
+      }
+      break;
+    }
+    case MOVEMENT_RIGHT:
+    {
+      to_velocity = b2Min(current_velocity.x + 0.3f, player_top_speed);
+      break;
+    }
+    default:
+    {
+      break;
+    }
   }
   
-  switch( event.key.code )
+  const float velocity_delta = to_velocity - current_velocity.x;
+  const float impulse = this->physics->GetMass() * velocity_delta;
+  
+  this->physics->ApplyLinearImpulse(
+    b2Vec2(impulse, 0), 
+    this->physics->GetWorldCenter()
+  );
+  
+  this->sync_visible(this->physics, this->visible);
+}
+
+void Player::_handle_key_press(const sf::Event& input)
+{
+  switch(input.key.code)
   {
     case sf::Keyboard::Up:
     {
@@ -96,16 +158,12 @@ void Player::handle_input(const sf::Event& event)
     }
     case sf::Keyboard::Right:
     {
-      this->physics->ApplyLinearImpulse(
-        b2Vec2(0.3f, 0.0f), this->physics->GetPosition()
-      );
+      this->current_move_state = MOVEMENT_RIGHT;
       break;
     }
     case sf::Keyboard::Left:
     {
-      this->physics->ApplyLinearImpulse(
-        b2Vec2(-0.3f, 0.0f), this->physics->GetPosition()
-      );
+      this->current_move_state = MOVEMENT_LEFT;
       break;
     }
     default:
@@ -115,17 +173,23 @@ void Player::handle_input(const sf::Event& event)
   }
 }
 
-void Player::render(sf::RenderTarget& renderer)
+void Player::_handle_key_release(const sf::Event& input)
 {
-  renderer.draw(this->visible);
-}
-
-void Player::update()
-{
-  this->sync_visible(this->physics, this->visible);
-}
-
+  switch(input.key.code)
+  {
+    case sf::Keyboard::Right:
+    case sf::Keyboard::Left:
+    {
+      this->current_move_state = MOVEMENT_STOPPED;
+      break;
+    }
+    default:
+    {
+      break;
+    }
   }
 }
 
 
+}
+}

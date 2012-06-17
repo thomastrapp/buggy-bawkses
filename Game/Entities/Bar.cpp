@@ -96,7 +96,8 @@ void Bar::pre_solve_collision(
   if( passer->get_entity_id() == Game::Entities::Id::PLAYER )
   {
     // If the Player's center is positioned under the center of this bar
-    // Allow imprecisions: 3.0f * b2_linearSlop
+    // Allow imprecisions and account for spacing between fixtures: 
+    // 3.0f * b2_linearSlop
     if( passer_position.y >  
             this->physics->GetPosition().y - 3.0f * b2_linearSlop )
     {

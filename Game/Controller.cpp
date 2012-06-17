@@ -17,13 +17,13 @@ namespace Game
   
   void Controller::start()
   {
-    sf::Event sfmlEvent;
+    sf::Event sfml_event;
     
     while( this->window.isOpen() )
     {
-      while( this->window.pollEvent(sfmlEvent) )
+      while( this->window.pollEvent(sfml_event) )
       {
-        this->handle_event(sfmlEvent);
+        this->handle_event(sfml_event);
       }
       
       this->step();
@@ -55,20 +55,25 @@ namespace Game
     this->window.display();
   }
   
-  void Controller::handle_event(const sf::Event& sfml_event)
+  void Controller::handle_event(const sf::Event& event)
   {
-    if( sfml_event.type == sf::Event::KeyPressed )
+    switch(event.type)
     {
-      this->handle_input(sfml_event);
+      case sf::Event::Closed:
+      {
+        this->window.close();
+        break;
+      }
+      case sf::Event::KeyPressed:
+      case sf::Event::KeyReleased:
+      {
+        this->world.handle_input(event);
+        break;
+      }
+      default:
+      {
+        break;
+      }
     }
-    else if( sfml_event.type == sf::Event::Closed )
-    {
-      this->window.close();
-    }
-  }
-  
-  void Controller::handle_input(const sf::Event& input)
-  {
-    this->world.handle_input(input);
   }
 }

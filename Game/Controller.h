@@ -61,21 +61,9 @@ public:
   /**
    * @brief Take care of events
    *
-   * If the event.type is a sf::Event::KeyPressed the event gets passed on to
-   * Controller::handle_input.
-   *
-   * @param sfml_event
+   * @param sfml_event An event from SFML
    */
-  void handle_event(const sf::Event& sfml_event);
-  
-  /**
-   * @brief Take care of user input
-   *
-   * The input event gets passed on to the world.
-   *
-   * @param input
-   */
-  void handle_input(const sf::Event& input);
+  void handle_event(const sf::Event& event);
 
 private:
   Controller(Game::Controller const&);
