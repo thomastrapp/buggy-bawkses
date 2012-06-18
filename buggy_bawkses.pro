@@ -23,7 +23,8 @@ SOURCES += main.cpp \
     Game/CollisionDispatcher.cpp \
     Game/Entities/UserData.cpp \
     Game/Entities/PlayerFoot.cpp \
-    Game/Entities/Bar.cpp
+    Game/Entities/Bar.cpp \
+    Game/Window.cpp
 LIBS += -lsfml-graphics \
     -lsfml-window \
     -lsfml-system \

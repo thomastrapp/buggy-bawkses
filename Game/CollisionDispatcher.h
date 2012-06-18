@@ -11,6 +11,18 @@
 namespace Game
 {
 
+/**
+ * @brief Notifies Entities about collisions
+ *
+ * 1. If a collision happens, Box2D calls the CollisionDispatcher.
+ * 2. The CollisionDispatcher then tries to identify the participating 
+ * Entities.
+ * 3. If an Entity stores a pointer to itself in a b2Fixture's user data,
+ * it will get notified.
+ * 4. The Entity is then able to take apropriate action. For Example, the 
+ * Entity may count the amount of collisions (PlayerFoot) or disable the
+ * collsion (Bar).
+ */
 class CollisionDispatcher : public b2ContactListener
 {
 public:
@@ -45,8 +57,15 @@ public:
    */
   void EndContact(b2Contact* contact);
   
+  /**
+   * @brief Callback for pre solving of collisions
+   *
+   * @param contact Contains pointers to two b2fixtures that are subject to 
+   * this collision
+   * @param old_manifold
+   */
   void PreSolve(b2Contact* contact, const b2Manifold* old_manifold);
-  void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
+  //void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
   
 private:
   CollisionDispatcher(const CollisionDispatcher&);

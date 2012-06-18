@@ -27,6 +27,7 @@ namespace Game
       }
       
       this->step();
+      this->window.move_view_y(-1.0f);
       this->render();
       
       // TODO: Remove this

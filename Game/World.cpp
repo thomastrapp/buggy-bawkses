@@ -100,9 +100,9 @@ namespace Game
   
   void World::_setup_bars()
   {
-    const int num_bars = 5;
-    const float bar_spacing = 100.0f;
-    const float walls_width = this->config->get<float>("stage-walls-width");
+    const int num_bars = 15;
+    const float bar_spacing = this->config->get<float>("bar-spacing");
+    const float bar_height = this->config->get<float>("bar-height");
     const float stage_width = 
       static_cast<float>(this->config->get<int>("window-width"));
     const float stage_height = 
@@ -113,7 +113,7 @@ namespace Game
       Game::Entities::RectangleDef rect_def(
         sf::Vector2f(
           stage_width,
-          walls_width / 2.0f
+          bar_height
         ),
         sf::Vector2f(
           stage_width / 2.0f,

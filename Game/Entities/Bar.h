@@ -31,8 +31,8 @@ public:
    * supplied configuration, as well as internal key/value pairs.
    * @param game_world A reference to the global World, which is a wrapper for 
    * b2World
-   * @param rect_def An instance of class WallDef, which describes this
-   * Wall
+   * @param rect_def An instance of class RectangleDef, which describes this
+   * Bar
    */
   Bar(
     boost::shared_ptr<Game::Config> conf, 
@@ -69,6 +69,12 @@ private:
   Bar& operator=(const Bar&);
   
   /**
+   * @brief A shared_ptr to Game::Config, a class that stores user supplied
+   * configuration, as well as internal key/value pairs.
+   */
+  boost::shared_ptr<Game::Config> config;
+  
+  /**
    * @brief The physical representation of a Bar. Memory is owned by 
    * b2World.
    */
@@ -78,6 +84,11 @@ private:
    * @brief The SFML shape, the visible representation of a Bar
    */
   sf::RectangleShape visible;
+  
+  /**
+   * @brief The height of this bar
+   */
+  const float height;
 };
 
 }

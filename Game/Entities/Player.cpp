@@ -33,8 +33,8 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   }
   
   sf::Vector2f player_size(
-    conf->get<float>("player-size-x"),
-    conf->get<float>("player-size-y")
+    conf->get<float>("player-width"),
+    conf->get<float>("player-height")
   );
   
   /**
@@ -151,7 +151,7 @@ void Player::_handle_key_press(const sf::Event& input)
       if( this->foot.is_on_ground() )
       {
         this->physics->ApplyLinearImpulse(
-          b2Vec2(0.0f, -0.25f), this->physics->GetPosition()
+          b2Vec2(0.0f, -0.3f), this->physics->GetPosition()
         );
       }
       break;

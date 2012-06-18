@@ -25,33 +25,14 @@ public:
    * @param conf A shared_ptr to Game::Config, a class that stores user supplied
    * configuration, as well as internal key/value pairs.
    */
-  Window(boost::shared_ptr<Game::Config> conf)
-  : sf::RenderWindow
-    (
-      sf::VideoMode
-      (
-        static_cast<unsigned int>(conf->get<int>("window-width")), 
-        static_cast<unsigned int>(conf->get<int>("window-height"))
-      ),
-      conf->get<std::string>("window-title")
-    ),
-    config(conf)
-  {
-    sf::View view(
-      sf::FloatRect(
-        0.0f, 
-        0.0f, 
-        static_cast<float>(conf->get<int>("window-width")),
-        static_cast<float>(conf->get<int>("window-height"))
-      )
-    );
-    this->setView(view);
-    this->setVerticalSyncEnabled(true);
-  }
-
-  ~Window()
-  {
-  }
+  Window(boost::shared_ptr<Game::Config> conf);
+  ~Window() {}
+  
+  /**
+   * @brief Move the view by given offset
+   * @param offset_y Amount of pixels to move y-axis
+   */
+  void move_view_y(const float offset_y);
 
 private:
   Window(Game::Window const&);

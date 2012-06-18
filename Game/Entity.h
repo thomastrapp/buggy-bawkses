@@ -139,6 +139,9 @@ private:
   Entity(const Entity&);
   Entity& operator=(const Entity&);
   
+  /**
+   * @brief An Entity id that defines the type of this entity (e.g. PLAYER)
+   */
   const Game::Entities::Id::t_entities_id entity_id;
 };
 

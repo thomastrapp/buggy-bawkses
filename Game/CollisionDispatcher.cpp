@@ -87,34 +87,35 @@ void CollisionDispatcher::PreSolve(
   }
 }
 
-void CollisionDispatcher::PostSolve(
-  b2Contact* contact, 
-  const b2ContactImpulse* impulse
-)
-{
-  if( contact == NULL || impulse == NULL )
-  {
-    BOOST_THROW_EXCEPTION(Game::Exception());
-  }
+//void CollisionDispatcher::PostSolve(
+//  b2Contact* contact, 
+//  const b2ContactImpulse* impulse
+//)
+//{
+//  if( contact == NULL || impulse == NULL )
+//  {
+//    BOOST_THROW_EXCEPTION(Game::Exception());
+//  }
 
-  b2Fixture * fixtureA = contact->GetFixtureA();
-  b2Fixture * fixtureB = contact->GetFixtureB();
+//  b2Fixture * fixtureA = contact->GetFixtureA();
+//  b2Fixture * fixtureB = contact->GetFixtureB();
   
-  void * user_dataA = fixtureA->GetUserData();
-  void * user_dataB = fixtureB->GetUserData();
+//  void * user_dataA = fixtureA->GetUserData();
+//  void * user_dataB = fixtureB->GetUserData();
   
-  if( user_dataA != NULL )
-  {
-    Game::Entity * entity = Game::Entities::UserData::to_entity(user_dataA);
-    entity->post_solve_collision(contact, impulse);
-  }
+//  if( user_dataA != NULL )
+//  {
+//    Game::Entity * entity = Game::Entities::UserData::to_entity(user_dataA);
+//    entity->post_solve_collision(contact, impulse);
+//  }
   
-  if( user_dataB != NULL )
-  {
-    Game::Entity * entity = Game::Entities::UserData::to_entity(user_dataB);
-    entity->post_solve_collision(contact, impulse);
-  }
-}
+//  if( user_dataB != NULL )
+//  {
+//    Game::Entity * entity = Game::Entities::UserData::to_entity(user_dataB);
+//    entity->post_solve_collision(contact, impulse);
+//  }
+//}
+
 
 
 }

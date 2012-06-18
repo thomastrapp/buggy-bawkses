@@ -14,8 +14,12 @@ Bar::Bar(
   const RectangleDef& rect_def
 )
 : Entity(Game::Entities::Id::BAR),
+  config(conf),
   physics(NULL),
-  visible(rect_def.size)
+  visible(rect_def.size),
+  height(
+    Game::Util::pixel_to_meter(rect_def.size.y)
+  )
 {
   // setup the body
   {
@@ -56,6 +60,10 @@ void Bar::pre_solve_collision(
   const b2Manifold * /* old_manifold */
 )
 {
+  static const float player_height = Game::Util::pixel_to_meter(
+    this->config->get<float>("player-height")
+  );
+  
   if( contact->GetFixtureA()->GetUserData() == NULL || 
       contact->GetFixtureB()->GetUserData() == NULL    )
   {
@@ -95,11 +103,14 @@ void Bar::pre_solve_collision(
   // Only allow Game::Entities::Player to pass
   if( passer->get_entity_id() == Game::Entities::Id::PLAYER )
   {
-    // If the Player's center is positioned under the center of this bar
+    const float passer_bottom = passer_position.y + player_height / 2.0f;
+    const float bar_top       = this->physics->GetPosition().y - this->height;
+    
     // Allow imprecisions and account for spacing between fixtures: 
-    // 3.0f * b2_linearSlop
-    if( passer_position.y >  
-            this->physics->GetPosition().y - 3.0f * b2_linearSlop )
+    const float padding = 3.0f * b2_linearSlop;
+    
+    // If the passer is completely over the bar
+    if( passer_bottom > bar_top - padding )
     {
       // Let the Player through this bar by disabling this collision
       contact->SetEnabled(false);

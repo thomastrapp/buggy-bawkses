@@ -81,10 +81,10 @@ namespace Game
       )
     );
     this->reg.insert(
-      std::pair<std::string, t_reg_value>("player-size-x", 10.0f)
+      std::pair<std::string, t_reg_value>("player-height", 30.0f)
     );
     this->reg.insert(
-      std::pair<std::string, t_reg_value>("player-size-y", 30.0f)
+      std::pair<std::string, t_reg_value>("player-width", 10.0f)
     );
     this->reg.insert(
       std::pair<std::string, t_reg_value>("player-density", 1.0f)
@@ -97,6 +97,12 @@ namespace Game
     );
     this->reg.insert(
       std::pair<std::string, t_reg_value>("stage-walls-width", 20.0f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("bar-height", 20.0f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("bar-spacing", 100.0f)
     );
     this->reg.insert(
       std::pair<std::string, t_reg_value>("gravity-x", 0.0f)
