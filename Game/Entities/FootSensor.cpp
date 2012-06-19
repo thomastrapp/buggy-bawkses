@@ -1,17 +1,17 @@
-#include "Game/Entities/PlayerFoot.h"
+#include "Game/Entities/FootSensor.h"
 
 namespace Game
 {
 namespace Entities
 {
 
-PlayerFoot::PlayerFoot()
-: Entity(Game::Entities::Id::PLAYER_FOOT),
-  foot_contacts(0)
+FootSensor::FootSensor()
+: Entity(Game::Entities::Id::FOOT_SENSOR),
+  contacts(0)
 {
 }
 
-void PlayerFoot::bind_to_body(
+void FootSensor::bind_to_body(
   b2Body * body, 
   const sf::Vector2f body_size
 )
@@ -46,19 +46,19 @@ void PlayerFoot::bind_to_body(
   );
 }
 
-void PlayerFoot::begin_collision(b2Contact * /* contact */)
+void FootSensor::begin_collision(b2Contact * /* contact */)
 {
-  ++this->foot_contacts;
+  ++this->contacts;
 }
 
-void PlayerFoot::end_collision(b2Contact * /* contact */)
+void FootSensor::end_collision(b2Contact * /* contact */)
 {
-  --this->foot_contacts;
+  --this->contacts;
 }
 
-bool PlayerFoot::is_on_ground()
+bool FootSensor::is_on_ground()
 {
-  return ( this->foot_contacts > 0 );
+  return ( this->contacts > 0 );
 }
 
 }

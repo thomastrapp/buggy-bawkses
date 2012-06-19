@@ -20,7 +20,7 @@ namespace Game
       enum t_entities_id {
         //INVALID     = 1 << 0, 
         PLAYER      = 1 << 1, 
-        PLAYER_FOOT = 1 << 2,
+        FOOT_SENSOR = 1 << 2,
         WALL        = 1 << 3,
         BAR         = 1 << 4
       };

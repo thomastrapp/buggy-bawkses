@@ -22,9 +22,9 @@ SOURCES += main.cpp \
     Game/Entities/Wall.cpp \
     Game/CollisionDispatcher.cpp \
     Game/Entities/UserData.cpp \
-    Game/Entities/PlayerFoot.cpp \
     Game/Entities/Bar.cpp \
-    Game/Window.cpp
+    Game/Window.cpp \
+    Game/Entities/FootSensor.cpp
 LIBS += -lsfml-graphics \
     -lsfml-window \
     -lsfml-system \
@@ -46,9 +46,9 @@ HEADERS += Game/Window.h \
     Game/Entities/WallRight.h \
     Game/CollisionDispatcher.h \
     Game/Entities/UserData.h \
-    Game/Entities/PlayerFoot.h \
     Game/Entities/Bar.h \
-    Game/Entities/RectangleDef.h
+    Game/Entities/RectangleDef.h \
+    Game/Entities/FootSensor.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wsign-conversion \
     -Wextra \

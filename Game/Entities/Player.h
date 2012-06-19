@@ -8,7 +8,7 @@
 #include "Game/Util/Util.h"
 #include "Game/Entity.h"
 #include "Game/Entities/Id.h"
-#include "Game/Entities/PlayerFoot.h"
+#include "Game/Entities/FootSensor.h"
 
 namespace Game
 {
@@ -46,8 +46,8 @@ public:
    * @brief Update Player logic
    *
    * Update the Player logic ("tick")
-   * and then call Game::Entity::sync_visible to apply any Box2d transformations
-   * to the sfml shape.
+   * and then call Game::Entity::sync_visible to apply any Box2d 
+   * transformations to the sfml shape.
    */
   void update();
   
@@ -123,7 +123,7 @@ private:
   /**
    * @brief A helper class to determine whether the Player can jump
    */
-  PlayerFoot foot;
+  FootSensor foot;
   
   /**
    * @brief The current state of movement
