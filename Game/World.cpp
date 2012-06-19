@@ -101,8 +101,10 @@ namespace Game
   void World::_setup_bars()
   {
     const int num_bars = 15;
-    const float bar_spacing = this->config->get<float>("bar-spacing");
-    const float bar_height = this->config->get<float>("bar-height");
+    const float bar_spacing = 
+      this->config->get<float>("bar-spacing");
+    const float bar_height = 
+      this->config->get<float>("bar-height");
     const float stage_width = 
       static_cast<float>(this->config->get<int>("window-width"));
     const float stage_height = 
@@ -117,7 +119,7 @@ namespace Game
         ),
         sf::Vector2f(
           stage_width / 2.0f,
-          stage_height - static_cast<float>(i) * bar_spacing
+          -1.0f * static_cast<float>(i) * bar_spacing
         )
       );
       boost::shared_ptr<Game::Entity> ptr_bar(

@@ -27,6 +27,17 @@ namespace Game
    * @brief Acts as a Wrapper for b2World and creates all entities.
    *
    * A call to World::render or World::update is proxied to all child entities.
+   *
+   * The World's coordinate space starts at 0 (bottom of the World) and grows 
+   * upwards into negativity.
+   *
+   * The reader may consider this drawing as a substitute for this bad 
+   * explanation:
+   * 
+   * -1 ^
+   *    | ->visible coordinate space<-
+   *  0 +-------------------------------> +1
+   *    0
    */
   class World
   {

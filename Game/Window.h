@@ -12,6 +12,10 @@ namespace Game
 {
 /**
  * @brief A wrapper for sf::RenderWindow
+ *
+ * In the initial state the bottom left corner of the Window has the 
+ * coordinates (0,0). The top right corner of the Window has the coordinates
+ * (window-width, - window-height). 
  */
 class Window : public sf::RenderWindow
 {

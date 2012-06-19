@@ -6,6 +6,12 @@
 namespace Game
 {
 
+/*
+ * TODO: Respect DRY
+ * maybe even use boost::function
+ */ 
+#pragma message "Clean CollisionDispatcher"
+
 void CollisionDispatcher::BeginContact(b2Contact * contact)
 {
   if( contact == NULL )

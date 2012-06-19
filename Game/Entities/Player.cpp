@@ -19,7 +19,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
       static_cast<float>(conf->get<int>("window-width")),
       static_cast<float>(conf->get<int>("window-height"))
     );
-    sf::Vector2f box_center_coord(stage_size.x / 2.0f, stage_size.y - 100.0f);
+    sf::Vector2f box_center_coord(stage_size.x / 2.0f, -100.0f);
     b2BodyDef playerDef;
     playerDef.type = b2_dynamicBody;
     // disable rotation, player shall always be upright
@@ -42,8 +42,9 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
    * does not participate in the physics simulation, but is subject to 
    * collisions.
    * 
-   * We pass a pointer to this to the user data of the fixture, to instruct 
-   * the CollisionDispatcher to notify us if we collide with anything.
+   * We pass a pointer to this Player to the user data of the fixture, to 
+   * instruct the CollisionDispatcher to notify us if we collide with 
+   * anything.
    *
    * We therefore can later determine whether the Player is in air or on solid
    * ground ("Can the player jump?").
@@ -95,6 +96,12 @@ void Player::render(sf::RenderTarget& renderer)
 
 void Player::update()
 {
+  this->_handle_movement();
+  this->sync_visible(this->physics, this->visible);
+}
+
+void Player::_handle_movement()
+{
   static const float player_top_speed = 
     this->config->get<float>("player-top-speed");
   
@@ -127,6 +134,7 @@ void Player::update()
     }
     default:
     {
+      return;
       break;
     }
   }
@@ -138,8 +146,6 @@ void Player::update()
     b2Vec2(impulse, 0), 
     this->physics->GetWorldCenter()
   );
-  
-  this->sync_visible(this->physics, this->visible);
 }
 
 void Player::_handle_key_press(const sf::Event& input)
@@ -150,6 +156,7 @@ void Player::_handle_key_press(const sf::Event& input)
     {
       if( this->foot.is_on_ground() )
       {
+        // Fixme: This should be a move state
         this->physics->ApplyLinearImpulse(
           b2Vec2(0.0f, -0.3f), this->physics->GetPosition()
         );

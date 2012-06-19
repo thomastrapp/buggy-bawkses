@@ -17,13 +17,13 @@ Window::Window(boost::shared_ptr<Game::Config> conf)
 {
   sf::View view(
     sf::FloatRect(
-      0.0f, 
-      0.0f, 
-      static_cast<float>(conf->get<int>("window-width")),
+      0.0f,
+      -1.0f * static_cast<float>(conf->get<int>("window-height")),
+      static_cast<float>(conf->get<int>("window-width")), 
       static_cast<float>(conf->get<int>("window-height"))
     )
   );
-  this->setView(view);
+  this->setView(view); 
   this->setVerticalSyncEnabled(true);
 }
 

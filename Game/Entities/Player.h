@@ -66,16 +66,47 @@ private:
   Player(const Player&);
   Player& operator=(const Player&);
   
+  /**
+   * @brief Helper function to apply velocity based on current_move_state
+   *
+   * Gradually increase the players speed while the user is pressing arrow 
+   * keys. The Player's speed may not exceed player-top-speed.
+   * If the user releases an arrow key, the Player's current_move_state 
+   * changes to MOVEMENT_STOPPED. The Player's speed is then gradually 
+   * decreased.
+   */
+  void _handle_movement();
+  
+  /**
+   * @brief Helper function to set current_move_state based on key presses
+   * @param input An event with event.type KeyPressed
+   */
   void _handle_key_press(const sf::Event& input);
+  
+  /**
+   * @brief Helper function to set current_move_state based on key releases
+   * @param input An event with event.type KeyReleased
+   */
   void _handle_key_release(const sf::Event& input);
   
+  /**
+   * @brief The t_move_state enum declares all possible values for 
+   * current_move_state
+   */
   enum t_move_state {
     //MOVEMENT_INVALID = 1 << 0,
+    /// The Player has stopped or is stopping
     MOVEMENT_STOPPED = 1 << 1,
+    /// The Player moves to the left
     MOVEMENT_LEFT    = 1 << 2,
+    /// The Player moves to the right
     MOVEMENT_RIGHT   = 1 << 3
   };
   
+  /**
+   * @brief A shared_ptr to Game::Config, a class that stores user 
+   * supplied configuration, as well as internal key/value pairs.
+   */
   boost::shared_ptr<Game::Config> config;
 
   /**
@@ -94,6 +125,9 @@ private:
    */
   PlayerFoot foot;
   
+  /**
+   * @brief The current state of movement
+   */
   Player::t_move_state current_move_state; 
 };
 
