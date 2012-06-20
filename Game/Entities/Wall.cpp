@@ -59,5 +59,18 @@ void Wall::render(sf::RenderTarget& renderer)
   renderer.draw(this->visible);
 }
 
+void Wall::update(const sf::View& view)
+{
+  const b2Vec2 new_position(
+    this->physics->GetPosition().x, 
+    Game::Util::pixel_to_meter(
+      view.getCenter().y
+    )
+  );
+  
+  this->physics->SetTransform(new_position, this->physics->GetAngle());
+  this->sync_visible(this->physics, this->visible);
+}
+
 }
 }

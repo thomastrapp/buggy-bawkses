@@ -14,11 +14,13 @@ WallRight::WallRight(
     Game::Entities::RectangleDef(
       sf::Vector2f( // size
         conf->get<float>("stage-walls-width"),
-        static_cast<float>(conf->get<int>("window-height")) * 10.0f
+        static_cast<float>(conf->get<int>("window-height"))
+          * conf->get<float>("wall-height-scale")
       ), 
       sf::Vector2f( // position
         static_cast<float>(conf->get<int>("window-width")),
-        -1.0f * static_cast<float>(conf->get<int>("window-height")) * 10.0f / 2.0f
+        -1.0f * static_cast<float>(conf->get<int>("window-height")) 
+          * conf->get<float>("wall-height-scale") / 2.0f
       )
     )
   )

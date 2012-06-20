@@ -98,6 +98,10 @@ namespace Game
     this->reg.insert(
       std::pair<std::string, t_reg_value>("stage-walls-width", 20.0f)
     );
+    // Multiple of window-height
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("wall-height-scale", 4.0f)
+    );
     this->reg.insert(
       std::pair<std::string, t_reg_value>("bar-height", 20.0f)
     );

@@ -45,6 +45,16 @@ public:
    * @param renderer The canvas to draw on
    */
   void render(sf::RenderTarget& renderer);
+  
+  /**
+   * @brief Update this Wall
+   *
+   * The y-position of the Wall is kept in sync with the views y-position.
+   * This moves the Walls upwards with the camera.
+   *
+   * @param view The current view (=camera)
+   */
+  void update(const sf::View& view);
 
 private:
   Wall(const Wall&);

@@ -14,16 +14,13 @@ WallLeft::WallLeft(
     Game::Entities::RectangleDef(
       sf::Vector2f( // size
         conf->get<float>("stage-walls-width"),
-        // FIXME: Walls shall be of reasonable height. 
-        // Walls get stacked on top of each other.
-        // A Wall will be dynamically created, if the user steers towards space
-        // without a wall
-        // if the old wall gets out of sight, it shall be deleted
-        static_cast<float>(conf->get<int>("window-height")) * 10.0f
+        static_cast<float>(conf->get<int>("window-height")) 
+          * conf->get<float>("wall-height-scale")
       ), 
       sf::Vector2f( // position
         0.0f,
-        -1.0f * static_cast<float>(conf->get<int>("window-height")) * 10.0f / 2.0f
+        -1.0f * static_cast<float>(conf->get<int>("window-height")) 
+          * conf->get<float>("wall-height-scale") / 2.0f
       )
     )
   )
