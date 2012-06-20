@@ -11,6 +11,7 @@
  
 namespace Game
 {
+class Window;
 
 /**
  * @brief Abstract base class for drawable objects
@@ -49,14 +50,14 @@ public:
    *
    * Subclasses may implement this method.
    */
-  virtual void update() {}
+  virtual void update(const sf::View& /* view */) {}
   
   /**
    * @brief To pass user supplied input to a Entity
    *
    * Subclasses may implement this method.
    */
-  virtual void handle_input(const sf::Event&)
+  virtual void handle_input(const sf::Event& /* input */)
   {
   }
   

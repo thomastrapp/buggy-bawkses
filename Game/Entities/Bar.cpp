@@ -55,6 +55,11 @@ Bar::Bar(
   }
 }
 
+Bar::~Bar()
+{
+  this->physics->GetWorld()->DestroyBody(this->physics);
+}
+
 void Bar::pre_solve_collision(
   b2Contact * contact, 
   const b2Manifold * /* old_manifold */
@@ -106,7 +111,7 @@ void Bar::pre_solve_collision(
     const float passer_bottom = passer_position.y + player_height / 2.0f;
     const float bar_top       = this->physics->GetPosition().y - this->height;
     
-    // Allow imprecisions and account for spacing between fixtures: 
+    // be a little fuzzy
     const float padding = 3.0f * b2_linearSlop;
     
     // If the passer is completely over the bar
@@ -121,6 +126,16 @@ void Bar::pre_solve_collision(
 void Bar::render(sf::RenderTarget& renderer)
 {
   renderer.draw(this->visible);
+}
+
+bool Bar::is_in_view(const sf::View& view)
+{
+  const float bar_top = this->physics->GetPosition().y - this->height / 2.0f;
+  const float view_bottom = Game::Util::pixel_to_meter(
+    view.getCenter().y + view.getSize().y / 2.0f
+  );
+  
+  return ( bar_top < view_bottom );
 }
 
 

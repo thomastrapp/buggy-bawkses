@@ -24,7 +24,8 @@ SOURCES += main.cpp \
     Game/Entities/UserData.cpp \
     Game/Entities/Bar.cpp \
     Game/Window.cpp \
-    Game/Entities/FootSensor.cpp
+    Game/Entities/FootSensor.cpp \
+    Game/Entities/Bartender.cpp
 LIBS += -lsfml-graphics \
     -lsfml-window \
     -lsfml-system \
@@ -48,7 +49,8 @@ HEADERS += Game/Window.h \
     Game/Entities/UserData.h \
     Game/Entities/Bar.h \
     Game/Entities/RectangleDef.h \
-    Game/Entities/FootSensor.h
+    Game/Entities/FootSensor.h \
+    Game/Entities/Bartender.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wsign-conversion \
     -Wextra \

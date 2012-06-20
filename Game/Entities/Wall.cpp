@@ -49,6 +49,11 @@ Wall::Wall(
   }
 }
 
+Wall::~Wall()
+{
+  this->physics->GetWorld()->DestroyBody(this->physics);
+}
+
 void Wall::render(sf::RenderTarget& renderer)
 {
   renderer.draw(this->visible);

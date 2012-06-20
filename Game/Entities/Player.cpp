@@ -77,6 +77,11 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   }
 }
 
+Player::~Player()
+{
+  this->physics->GetWorld()->DestroyBody(this->physics);
+}
+
 void Player::handle_input(const sf::Event& input)
 {
   if( input.type == sf::Event::KeyPressed )
@@ -94,7 +99,7 @@ void Player::render(sf::RenderTarget& renderer)
   renderer.draw(this->visible);
 }
 
-void Player::update()
+void Player::update(const sf::View& /* view */)
 {
   this->_handle_movement();
   this->sync_visible(this->physics, this->visible);

@@ -48,11 +48,11 @@ namespace Game
     }
   }
   
-  void World::update()
+  void World::update(const sf::View& view)
   {
     BOOST_FOREACH(boost::shared_ptr<Game::Entity> entity, this->entities)
     {
-      entity->update();
+      entity->update(view);
     }
   }
 
@@ -87,8 +87,6 @@ namespace Game
       this->entities.push_back(ptr_right);
     }
     
-    this->_setup_bars();
-    
     // player
     {
       boost::shared_ptr<Game::Entity> ptr_player(
@@ -96,36 +94,13 @@ namespace Game
       );
       this->entities.push_back(ptr_player);
     }
-  }
-  
-  void World::_setup_bars()
-  {
-    const int num_bars = 15;
-    const float bar_spacing = 
-      this->config->get<float>("bar-spacing");
-    const float bar_height = 
-      this->config->get<float>("bar-height");
-    const float stage_width = 
-      static_cast<float>(this->config->get<int>("window-width"));
-    const float stage_height = 
-      static_cast<float>(this->config->get<int>("window-height"));
     
-    for(int i = 0; i < num_bars; ++i)
+    // bars
     {
-      Game::Entities::RectangleDef rect_def(
-        sf::Vector2f(
-          stage_width,
-          bar_height
-        ),
-        sf::Vector2f(
-          stage_width / 2.0f,
-          -1.0f * static_cast<float>(i) * bar_spacing
-        )
+      boost::shared_ptr<Game::Entity> ptr_bartender(
+        new Game::Entities::Bartender(this->config, *this)
       );
-      boost::shared_ptr<Game::Entity> ptr_bar(
-        new Game::Entities::Bar(this->config, *this, rect_def)
-      );
-      this->entities.push_back(ptr_bar);
+      this->entities.push_back(ptr_bartender);
     }
   }
 }

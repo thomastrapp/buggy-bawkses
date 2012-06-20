@@ -37,7 +37,7 @@ public:
     Game::World& game_world,
     const Game::Entities::RectangleDef& rect_def
   );
-  ~Wall() {}
+  ~Wall();
   
   /**
    * @brief Render this Wall

@@ -12,6 +12,7 @@
 #include "Game/CollisionDispatcher.h"
 #include "Game/Entities/RectangleDef.h"
 #include "Game/Entities/Bar.h"
+#include "Game/Entities/Bartender.h"
 
 namespace Game
 {
@@ -66,7 +67,7 @@ namespace Game
     /**
      * @brief Update all child entities
      */
-    void update();
+    void update(const sf::View& view);
     
     /**
      * @brief Handle input
@@ -93,11 +94,6 @@ namespace Game
      * @brief Bring entities to life
      */
     void _setup_entities();
-    
-    /**
-     * @brief Add bars
-     */
-    void _setup_bars();
     
     /**
      * @brief A shared_ptr to a Box2d b2World

@@ -14,10 +14,7 @@
  * * CollisionDispatcher violates DRY
  * * Implement Player::jump (maybe gradually increase to top speed?)
  * * change configuration option window-width/-height from int to unsigned int
- * * Walls: Dynamically create/destroy walls if walls are needed/out of sight
- * * Bars: Dynamically create/destroy bars if bars are needed/out of sight
- * * Rename PlayerFoot to the more general name BodyFoot: The foot may be used
- * on any Entity.
+ * * on WallLeft/Right::update(view) move walls 
  */
 
 int main(int argc, char ** argv)

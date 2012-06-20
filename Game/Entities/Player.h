@@ -33,7 +33,7 @@ public:
    * b2World
    */
   Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world);
-  ~Player() {}
+  ~Player();
   
   /**
    * @brief Render this Player
@@ -49,7 +49,7 @@ public:
    * and then call Game::Entity::sync_visible to apply any Box2d 
    * transformations to the sfml shape.
    */
-  void update();
+  void update(const sf::View& /* view */);
   
   /**
    * @brief Handle user input for player, e.g. jump, run

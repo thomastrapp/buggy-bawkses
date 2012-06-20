@@ -39,7 +39,7 @@ public:
     Game::World& game_world, 
     const RectangleDef& rect_def
   );
-  ~Bar() {}
+  ~Bar();
   
   /**
    * @brief Render this Bar
@@ -63,6 +63,8 @@ public:
     b2Contact * contact, 
     const b2Manifold * /* old_manifold */
   );
+  
+  bool is_in_view(const sf::View& view);
 
 private:
   Bar(const Bar&);

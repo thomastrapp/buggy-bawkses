@@ -105,6 +105,20 @@ namespace Game
       std::pair<std::string, t_reg_value>("bar-spacing", 100.0f)
     );
     this->reg.insert(
+      std::pair<std::string, t_reg_value>("bar-pre-fill", 400.0f)
+    );
+    // Multiple of window-with
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("bar-min-width", 0.1f)
+    );
+    // Multiple of window-with
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("bar-max-width", 0.6f)
+    );
+    this->reg.insert(
+      std::pair<std::string, t_reg_value>("new-level-offset", 1000)
+    );
+    this->reg.insert(
       std::pair<std::string, t_reg_value>("gravity-x", 0.0f)
     );
     this->reg.insert(

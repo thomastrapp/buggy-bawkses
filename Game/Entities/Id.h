@@ -10,7 +10,7 @@ namespace Game
   namespace Entities
   {
     /**
-     * @brief Constants and functions related to Entity Ids.
+     * @brief Entity Ids.
      */
     namespace Id 
     {
@@ -22,7 +22,8 @@ namespace Game
         PLAYER      = 1 << 1, 
         FOOT_SENSOR = 1 << 2,
         WALL        = 1 << 3,
-        BAR         = 1 << 4
+        BARTENDER   = 1 << 4,
+        BAR         = 1 << 5
       };
     }
   }

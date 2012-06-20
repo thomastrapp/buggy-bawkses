@@ -45,8 +45,10 @@ namespace Game
   
   void Controller::render()
   {
+    const sf::View current_view(this->window.getView());
+    
     this->window.clear();
-    this->world.update();
+    this->world.update(current_view);
     this->world.render(this->window);
     
     #ifdef ENABLE_DEBUG_DRAW
