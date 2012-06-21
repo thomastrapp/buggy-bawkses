@@ -25,6 +25,7 @@ Window::Window(boost::shared_ptr<Game::Config> conf)
   );
   this->setView(view); 
   this->setVerticalSyncEnabled(true);
+  this->setKeyRepeatEnabled(false);
 }
 
 void Window::move_view_y(const float offset_y)

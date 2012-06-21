@@ -42,7 +42,7 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
    * does not participate in the physics simulation, but is subject to 
    * collisions.
    * 
-   * We pass a pointer to this Player to the user data of the fixture, to 
+   * We pass a pointer to this Foot to the user data of the fixture, to 
    * instruct the CollisionDispatcher to notify us if we collide with 
    * anything.
    *
@@ -163,7 +163,7 @@ void Player::_handle_key_press(const sf::Event& input)
       {
         // Fixme: This should be a move state
         this->physics->ApplyLinearImpulse(
-          b2Vec2(0.0f, -0.3f), this->physics->GetPosition()
+          b2Vec2(0.0f, -0.5f), this->physics->GetPosition()
         );
       }
       break;

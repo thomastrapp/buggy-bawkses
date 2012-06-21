@@ -27,10 +27,18 @@ namespace Game
       }
       
       this->step();
-      this->window.move_view_y(-1.0f);
+      
+      // Don't immediately begin to move the camera.
+      // Replace this hack with a Game::State.
+      // Camera movement should only start if the player reaches the top of 
+      // the view.
+      static int i = 0;
+      if( ++i > 100 )
+        this->window.move_view_y(-2.0f);
+
       this->render();
       
-      // TODO: Remove this
+      // Replace throttling with sf::Clock
       if( system("sleep 0.01") > 0 )
       {
         BOOST_THROW_EXCEPTION(Game::Exception());
