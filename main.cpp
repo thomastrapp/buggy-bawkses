@@ -13,8 +13,8 @@
  * Code smells & todos:
  * * CollisionDispatcher violates DRY
  * * Implement Player::jump (maybe gradually increase to top speed?)
- * * change configuration option window-width/-height from int to unsigned int (new template specialisation etc)
- * * on WallLeft/Right::update(view) move walls 
+ * * change configuration option window-width/-height from int to unsigned int 
+ * (new template specialisation etc)
  */
 
 int main(int argc, char ** argv)

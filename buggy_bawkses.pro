@@ -77,3 +77,7 @@ QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wundef \
     -Wno-unused \
     -Weffc++
+
+OTHER_FILES += \
+    readme.txt \
+    Doxyfile
