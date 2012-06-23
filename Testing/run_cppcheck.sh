@@ -11,11 +11,11 @@ cppcheck="/usr/bin/cppcheck"
 assert_dependencies()
 {
   # Try to execute cpp check
-  "$cppcheck" --help > /dev/null 2>&1 
+  "$cppcheck" --help > /dev/null 2>&1 \
     || { echo >&2 "Cannot execute cppcheck"; exit 1; }
   
   # check if first parameter is an existing directory
-  [ -d "$1" ] 
+  [ -d "$1" ] \
     || { echo >&2 "Given parameter is not a directory"; exit 1; } 
 }
 
