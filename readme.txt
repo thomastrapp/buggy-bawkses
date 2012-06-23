@@ -4,10 +4,13 @@ Buggy Bawkses!
 Dependencies:
   - SFML 2.0 RC1, http://www.sfml-dev.org/
   - Box2D 2.2.1, http://code.google.com/p/box2d/
-  - optionally Qtcreator, http://qt.nokia.com/products/developer-tools
-    I used version 2.5.0, but older/newer version should work just fine.
   - qmake (>= 4.6.2)
   - boost (>= 1.40)
+
+Optional dependencies:
+  - Qtcreator, http://qt.nokia.com/products/developer-tools
+    I used version 2.5.0, but older/newer version should work just fine.
+  - cppcheck (>= 1.5.4), http://cppcheck.sourceforge.net/
 
 Build:
   0. In project folder
@@ -18,7 +21,7 @@ Build:
 
 Generate documentation:
   0. In project folder, run:
-     doxygen ./Doxyfile
+     $ doxygen ./Doxyfile
   1. open Documentation/html/index.html
   2. Done!
 
@@ -36,6 +39,11 @@ Commit rules:
   - Boost: Boost license ("Do what the fuck you want"), see
     http://www.boost.org/users/license.html
 
+Static code analysis with cppcheck:
+  0. Make sure you have the cppcheck binary in /usr/bin
+  1. Run the wrapper script in project root:
+     $ ./Testing/run_cppcheck.sh . # Don't forget the trailing dot
+
 
 Tips for debian/ubuntu users:
 ------------------------------
@@ -43,35 +51,35 @@ Tips for debian/ubuntu users:
   Building Box2D from source:
   ----------------------------
     0. Run as root: 
-       apt-get build-dep libbox2d0 # apt-get may install unmet dependencies 
-                                   # for Box2D
+       $ apt-get build-dep libbox2d0 # apt-get may install unmet dependencies 
+                                     # for Box2D
     1. Download Box2D 2.2.1 and unpack
     2. In unpacked folder run:
-       cmake .  # Don't forget the dot; cmake configures the build 
-       make     # Box2D will now be built
+       $ cmake .  # Don't forget the dot; cmake configures the build 
+       $ make     # Box2D will now be built
     3. Run as root:
-       make install  # This will install the Box2D header files as well as the
-                     # shared libraries
+       $ make install  # This will install the Box2D header files as well as
+                       # the shared libraries
     4. Done!
 
 
   Building SFML from source:
   ---------------------------
-  (It may be sufficient to install the precompiled libraries for your 
-   architecture: 
-   "SFML 2.0 Release Candidate - C++ | version 2.0 RC | 32/64bit"
-   This includes needed header files)
+    (It may be sufficient to install the precompiled libraries for your 
+     architecture: 
+     "SFML 2.0 Release Candidate - C++ | version 2.0 RC | 32/64bit"
+     This includes needed header files)
    
     0. Run as root: 
-       apt-get build-dep libsfml # apt-get may install unmet dependencies for 
-                                 # SFML
+       $ apt-get build-dep libsfml # apt-get may install unmet dependencies for
+                                   # SFML
     1. Download https://github.com/LaurentGomila/SFML/tarball/master and unpack
     2. In unpacked folder run:
-       cmake .  # Don't forget the dot; cmake configures the build 
-       make     # SFML will now be built
+       $ cmake .  # Don't forget the dot; cmake configures the build 
+       $ make     # SFML will now be built
     3. Run as root:
-       make install  # This will install the SFML header files as well as the
-                     # shared libraries
+       $ make install  # This will install the SFML header files as well as the
+                       # shared libraries
     4. Done!
   
   
@@ -81,15 +89,15 @@ Tips for debian/ubuntu users:
          - Package names may vary between distros and versions.
          - The packages in your distro's repository might be outdated.
     1. Run as root:
-       apt-get install qt4-qmake libboost-dev qtcreator
+       $ apt-get install qt4-qmake libboost-dev qtcreator
        
 
   Check if all libraries can be found by the linker:
   ------------------------------------------------------
     0. This shell command echoes "All OK" if all libraries were found:
-       ld -lsfml-graphics -lsfml-window -lsfml-system \
-       -lboost_program_options -lBox2D -o /tmp/buggy_bawkses_linker_test \
-       && echo "All OK"
+       $ ld -lsfml-graphics -lsfml-window -lsfml-system \
+         -lboost_program_options -lBox2D -o /tmp/buggy_bawkses_linker_test \
+         && echo "All OK"
     1. ld tries to link these libraries, creating the executable 
        /tmp/buggy_bawkses_linker_test. If it cannot load a library it prints
        the library's name and exits indicating failure. If all went well it 

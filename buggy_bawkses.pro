@@ -80,4 +80,5 @@ QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
 
 OTHER_FILES += \
     readme.txt \
-    Doxyfile
+    Doxyfile \
+    Testing/run_cppcheck.sh
