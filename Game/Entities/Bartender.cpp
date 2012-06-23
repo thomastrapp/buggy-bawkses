@@ -48,7 +48,7 @@ void Bartender::_maybe_remove_old_bars(const sf::View& view)
       #ifdef DEBUG
       std::cout << "Removing a bar" << std::endl;
       #endif
-      this->bars.erase(it);
+      it = this->bars.erase(it);
     }
     else
     {
