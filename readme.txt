@@ -8,9 +8,15 @@ Dependencies:
   - boost (>= 1.40)
 
 Optional dependencies:
+  - cppcheck (>= 1.5.4), http://cppcheck.sourceforge.net/
   - Qtcreator, http://qt.nokia.com/products/developer-tools
     I used version 2.5.0, but older/newer version should work just fine.
-  - cppcheck (>= 1.5.4), http://cppcheck.sourceforge.net/
+    In the subfolder ./Editor there's a "Code style" definition for qtcreator.
+    This file can be imported through:
+      -> Left panel button "Projects" 
+      -> Tab "Code Style Settings"
+      -> Button "Import"
+      -> Choose the file Editor/qtcreator_code_style.xml
 
 Build:
   0. In project folder
