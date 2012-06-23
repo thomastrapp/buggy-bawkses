@@ -5,11 +5,12 @@ Dependencies:
   - SFML 2.0 RC1, http://www.sfml-dev.org/
   - Box2D 2.2.1, http://code.google.com/p/box2d/
   - optionally Qtcreator, http://qt.nokia.com/products/developer-tools
-  - qmake
-  - boost
+    I used version 2.5.0, but older/newer version should work just fine.
+  - qmake (>= 4.6.2)
+  - boost (>= 1.40)
 
 Build:
-  0. In project root
+  0. In project folder
   1. Run qmake
   2. Run make
   3. There should be a binary named "buggy_bawkses"
@@ -25,6 +26,15 @@ Commit rules:
   - Only 80 chars per line (This is enforced by a svn pre-commit hook)
   - No tabs, only spaces (This is enforced by a svn pre-commit hook)
   - Indentation is 2 spaces
+
+3rd party licenses:
+  - SFML: zlib license ("Do what the fuck you want"), see
+    http://www.sfml-dev.org/license.php and
+    http://www.opensource.org/licenses/zlib-license.php
+  - Box2D: zlib license ("Do what the fuck you want"), see
+    http://code.google.com/p/box2d/source/browse/trunk/Box2D/License.txt
+  - Boost: Boost license ("Do what the fuck you want"), see
+    http://www.boost.org/users/license.html
 
 
 Tips for debian/ubuntu users:
@@ -63,37 +73,26 @@ Tips for debian/ubuntu users:
        make install  # This will install the SFML header files as well as the
                      # shared libraries
     4. Done!
-    
-    
-  Installing boost:
-  ------------------
-    0. To find the packages to install, run:
-       apt-cache search libboost
-    1. Install libboost, e.g. run as root:
-       apt-get install libboost-dev
-       The package name may vary between distros and versions; some call it
-       libboost-all-dev.
-
+  
+  
+  Installing qmake, boost and qtcreator:
+  ---------------------------------------
+    0. Hints: 
+         - Package names may vary between distros and versions.
+         - The packages in your distro's repository might be outdated.
+    1. Run as root:
+       apt-get install qt4-qmake libboost-dev qtcreator
+       
 
   Check if all libraries can be found by the linker:
   ------------------------------------------------------
     0. This shell command echoes "All OK" if all libraries were found:
-       ld -lsfml-graphics -lsfml-window -lsfml-system \ 
-       -lboost_program_options -lBox2D && echo "All OK"
-  
-  
-  Installing qmake:
-  ------------------
-    0. Run as root:
-       apt-get install qt4-qmake
-       The package name may vary between distros and versions.
-
-
-  Installing QtCreator:
-  ----------------------
-    0. Run as root: 
-       apt-get install qt-creator
-    --- or ---
-       Download an installer from Qt to get the newest version
-    1. Open buggy_bawkses.pro
+       ld -lsfml-graphics -lsfml-window -lsfml-system \
+       -lboost_program_options -lBox2D -o /tmp/buggy_bawkses_linker_test \
+       && echo "All OK"
+    1. ld tries to link these libraries, creating the executable 
+       /tmp/buggy_bawkses_linker_test. If it cannot load a library it prints
+       the library's name and exits indicating failure. If all went well it 
+       will still print an error message stating that it couldn't find an entry
+       point (=main). This error can safely be ignored. 
 
