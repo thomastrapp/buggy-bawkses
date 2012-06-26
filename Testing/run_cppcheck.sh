@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # wrapper for cppcheck
 # see http://cppcheck.sourceforge.net/

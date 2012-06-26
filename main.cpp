@@ -10,6 +10,13 @@
 #pragma message "X-Panic-Mode: SNAFU"
 
 /**
+ * \mainpage
+ *
+ * See readme.txt
+ */
+
+
+/**
  * Code smells & todos:
  * * CollisionDispatcher violates DRY
  * * Implement Player::jump (maybe gradually increase to top speed?)

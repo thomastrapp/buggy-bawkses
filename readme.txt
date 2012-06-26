@@ -9,6 +9,9 @@ Dependencies:
 
 Optional dependencies:
   - cppcheck (>= 1.5.4), http://cppcheck.sourceforge.net/
+    Static code analysis
+  - gperftools (>= 2.0), https://code.google.com/p/gperftools/
+    Check heap for memory leaks
   - Qtcreator, http://qt.nokia.com/products/developer-tools
     I used version 2.5.0, but older/newer version should work just fine.
     In the subfolder ./Editor there's a "Code style" definition for qtcreator.
@@ -49,6 +52,22 @@ Static code analysis with cppcheck:
   0. Make sure you have the cppcheck binary in /usr/bin
   1. Run the wrapper script in project root:
      $ ./Testing/run_cppcheck.sh . # Don't forget the trailing dot
+
+Heap analysis with gperftools:
+  0. Compile with target heap_checker
+  1. Run 
+     $ ./Testing/run_heapcheck.sh ./buggy_bawkses_heap_checker
+  2. Memory leaks will be printed, alongside further instructions.
+     gperftools indicate leakage of 192 bytes outside of this project (at least
+     on my machine). It's probably safe to ignore these two leaks.
+
+Build targets:
+  - release
+    Binary: buggy_bawkses
+  - debug: Your typical debug build. All Box2D shapes are outlined.
+    Binary: buggy_bawkses_debug
+  - heap_checker: Debug build linked with libtcmalloc (gperftools)
+    Binary: buggy_bawkses_heap_checker
 
 
 Tips for debian/ubuntu users:

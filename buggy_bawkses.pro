@@ -1,3 +1,5 @@
+CONFIG -= qt
+
 CONFIG(debug, debug|release) {
     TARGET = buggy_bawkses_debug
     DEFINES += ENABLE_DEBUG_DRAW \
@@ -6,6 +8,12 @@ CONFIG(debug, debug|release) {
 
 CONFIG(release, debug|release) { 
     TARGET = buggy_bawkses
+}
+
+heap_checker { 
+    TARGET = buggy_bawkses_heap_checker
+    DEFINES += ENABLE_HEAP_CHECKER
+    LIBS += -ltcmalloc
 }
 
 SOURCES += main.cpp \
