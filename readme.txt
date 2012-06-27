@@ -53,6 +53,38 @@ Static code analysis with cppcheck:
   1. Run the wrapper script in project root:
      $ ./Testing/run_cppcheck.sh . # Don't forget the trailing dot
 
+Static code analysis with Google's cpplint.py:
+  0. Run the wrapper script in project root:
+     $ ./Testing/run_cpplint.sh . # Don't forget the trailing dot
+  1. The following lint-checks are disabled:
+     - whitespace
+         Google seems to be using K&R indent style, we use allman
+         
+     - legal 
+         We don't care about legal information in files (yet)
+         
+     - build/header_guard
+         Our header guard is namespace based, while Google's is file based
+         
+     - build/include_order 
+         Boost header files are wrongly convicted as C-header files, thus 
+         cpplint is emitting errors
+         
+     - runtime/references
+         Google suggests using pointers wherever a non-const reference is 
+         passed. Readability on the caller side is improved, since the caller
+         has to explicitly pass a pointer to a mutable object. On the downside
+         this introduces the possibility of passing a NULL pointer. So we opt
+         for references.
+         See http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
+           ?showone=Reference_Arguments#Reference_Arguments
+         
+     - readability/streams
+         Google argues strongly against streams. We don't care here.
+         See http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml
+           ?showone=Streams#Streams
+         
+
 Heap analysis with gperftools:
   0. Compile with target heap_checker
   1. Run 
@@ -118,7 +150,7 @@ Tips for debian/ubuntu users:
        
 
   Check if all libraries can be found by the linker:
-  ------------------------------------------------------
+  ---------------------------------------------------
     0. This shell command echoes "All OK" if all libraries were found:
        $ ld -lsfml-graphics -lsfml-window -lsfml-system \
          -lboost_program_options -lBox2D -o /tmp/buggy_bawkses_linker_test \

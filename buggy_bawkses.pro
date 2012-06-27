@@ -90,4 +90,6 @@ OTHER_FILES += \
     readme.txt \
     Doxyfile \
     Testing/run_cppcheck.sh \
-    Testing/run_heapcheck.sh
+    Testing/run_heapcheck.sh \
+    Testing/cpplint.py \
+    Testing/run_cpplint.sh
