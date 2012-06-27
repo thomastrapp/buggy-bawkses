@@ -1,8 +1,9 @@
 #ifndef GAMEREGISTRY_H
 #define GAMEREGISTRY_H
 
-#include <cstring>
 #include <map>
+#include <utility>
+#include <string>
 #include <boost/variant.hpp>
 
 #include "Game/Exception.h"

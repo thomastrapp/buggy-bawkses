@@ -1,7 +1,7 @@
 #ifndef GAMECONFIG_H
 #define GAMECONFIG_H
 
-#include <cstring>
+#include <string>
 #include <ostream>
 #include <boost/program_options.hpp>
 

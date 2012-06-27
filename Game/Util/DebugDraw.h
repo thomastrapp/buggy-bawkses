@@ -35,7 +35,7 @@ public:
    *
    * @param renderer The canvas to draw on
    */
-  DebugDraw(sf::RenderTarget& renderer);
+  explicit DebugDraw(sf::RenderTarget& renderer);
   ~DebugDraw() {}
  
   /**

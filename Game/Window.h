@@ -2,6 +2,7 @@
 #define GAMEWINDOW_H
 
 #include <iostream>
+#include <string>
 #include <boost/shared_ptr.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -29,7 +30,7 @@ public:
    * @param conf A shared_ptr to Game::Config, a class that stores user supplied
    * configuration, as well as internal key/value pairs.
    */
-  Window(boost::shared_ptr<Game::Config> conf);
+  explicit Window(boost::shared_ptr<Game::Config> conf);
   ~Window() {}
   
   /**

@@ -27,7 +27,7 @@ public:
    *
    * @param entity_id A distinct Id for this Entity
    */
-  Entity(Game::Entities::Id::t_entities_id id);
+  explicit Entity(Game::Entities::Id::t_entities_id id);
   
   /**
    * @brief Destruct Entity

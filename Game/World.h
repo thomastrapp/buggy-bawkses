@@ -1,6 +1,8 @@
 #ifndef GAMEWORLD_H
 #define GAMEWORLD_H
 
+#include <vector>
+
 #include <boost/foreach.hpp>
 #include <boost/shared_ptr.hpp>
 #include <Box2D/Box2D.h>
@@ -49,7 +51,7 @@ namespace Game
      * @param conf A shared_ptr to Game::Config, a class that stores user 
      * supplied configuration, as well as internal key/value pairs.
      */
-    World(boost::shared_ptr<Game::Config> conf);
+    explicit World(boost::shared_ptr<Game::Config> conf);
     ~World() {}
     
     /**

@@ -37,7 +37,7 @@ public:
    * @param conf A shared_ptr to Game::Config, a class that stores user
    * supplied configuration, as well as internal key/value pairs.
    */
-  Controller(boost::shared_ptr<Game::Config> conf);
+  explicit Controller(boost::shared_ptr<Game::Config> conf);
   ~Controller() {}
   
   /**
