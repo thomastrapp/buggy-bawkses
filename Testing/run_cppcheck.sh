@@ -7,6 +7,10 @@
 # set -x
 
 cppcheck="/usr/bin/cppcheck"
+# red
+color_highlight=$(echo -n -e "\033[0;31m")
+# reset color
+color_end=$(echo -n -e "\033[0m")
 
 assert_dependencies()
 {
@@ -35,8 +39,10 @@ assert_dependencies "$1"
 # for includes 
 # xargs echo -n: remove trailing newline from arguments
 # This might break with filenames containing spaces
-"$cppcheck" --includes-file="$1" --enable=all \
-  $(find "$1" -name "*.h" -or -name "*.cpp" -or -name "*.hpp" | xargs echo -n)
+"$cppcheck" -I "$1" --quiet --enable=all --error-exitcode=1 \
+  $(find "$1" -name "*.h" -or -name "*.cpp" -or -name "*.hpp" | xargs echo -n)\
+    2>&1 | sed "s/\[[^]]*\]/${color_highlight}&${color_end}/"
 
 # return with cppcheck's return code 
-exit $?
+exit ${PIPESTATUS[0]}
+
