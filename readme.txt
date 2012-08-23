@@ -1,6 +1,13 @@
 Buggy Bawkses!
 -------------------
 
+Copyright 2012 Thomas Trapp, http://www.thomastrapp.com
+
+Bugy Bawkses is free Software under the terms of the GNU General Public License
+Version 2. See COPYING for full license text.
+
+Buggy Bawkses is an unfinished clone of the popular game xjump.
+
 Dependencies:
   - SFML 2.0 RC1, http://www.sfml-dev.org/
   - Box2D 2.2.1, http://code.google.com/p/box2d/
@@ -61,7 +68,6 @@ Static code analysis with Google's cpplint.py:
          Google seems to be using K&R indent style, we use allman
          
      - legal 
-         We don't care about legal information in files (yet)
          
      - build/header_guard
          Our header guard is namespace based, while Google's is file based
