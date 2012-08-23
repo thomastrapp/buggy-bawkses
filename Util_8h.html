@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Buggy Bawkses!: Main Page</title>
+<title>Buggy Bawkses!: Game/Util/Util.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -17,10 +17,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="navigation" id="top">
   <div class="tabs">
     <ul>
-      <li class="current"><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <img id="MSearchSelect" src="search/search.png"
@@ -36,9 +36,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+    </ul>
+  </div>
 </div>
 <div class="contents">
-<h1>Buggy Bawkses! Documentation</h1><h3 class="version">0.1 </h3><p>See readme.txt </p>
+<h1>Game/Util/Util.h File Reference</h1><code>#include &lt;iostream&gt;</code><br/>
+<code>#include &quot;<a class="el" href="Exception_8h_source.html">Game/Exception.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Id_8h_source.html">Game/Entities/Id.h</a>&quot;</code><br/>
+
+<p><a href="Util_8h_source.html">Go to the source code of this file.</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Namespaces</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame.html">Game</a></td></tr>
+
+<p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Global namespace. </p>
+<br/></td></tr>
+</p>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame_1_1Util.html">Game::Util</a></td></tr>
+
+<p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Various utility functions and constants. </p>
+<br/></td></tr>
+</p>
+<tr><td colspan="2"><h2>Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame_1_1Util.html#a761410e5563b6e51de7c526b966e1970">Game::Util::pixel_to_meter</a> (const float pixels)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert pixels to meters.  <a href="#a761410e5563b6e51de7c526b966e1970"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame_1_1Util.html#a497914a83653547604ce164cfc97a08f">Game::Util::meter_to_pixel</a> (const float meters)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts meters to pixels.  <a href="#a497914a83653547604ce164cfc97a08f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame_1_1Util.html#aff29ed5a7e31acc891170d0a3dad206e">Game::Util::rad_to_deg</a> (const float rad)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert radians to degrees.  <a href="#aff29ed5a7e31acc891170d0a3dad206e"></a><br/></td></tr>
+<tr><td colspan="2"><h2>Variables</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame_1_1Util.html#ad206d7a2cb7038640f88e33fc8785df9">Game::Util::pi</a> = 3.14f</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A large enough pie.  <a href="#ad206d7a2cb7038640f88e33fc8785df9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static const float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame_1_1Util.html#a1451dd46f1501c827894540e50c72c33">Game::Util::pixel_per_meter</a> = 128.0f</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Scale between Box2d (meters) and SFML (pixels).  <a href="#a1451dd46f1501c827894540e50c72c33"></a><br/></td></tr>
+</table>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"

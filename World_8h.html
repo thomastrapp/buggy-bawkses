@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Buggy Bawkses!: Main Page</title>
+<title>Buggy Bawkses!: Game/World.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javaScript" src="search/search.js"></script>
@@ -17,10 +17,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="navigation" id="top">
   <div class="tabs">
     <ul>
-      <li class="current"><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <img id="MSearchSelect" src="search/search.png"
@@ -36,9 +36,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div class="tabs">
+    <ul>
+      <li><a href="files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="globals.html"><span>File&nbsp;Members</span></a></li>
+    </ul>
+  </div>
 </div>
 <div class="contents">
-<h1>Buggy Bawkses! Documentation</h1><h3 class="version">0.1 </h3><p>See readme.txt </p>
+<h1>Game/World.h File Reference</h1><code>#include &lt;vector&gt;</code><br/>
+<code>#include &lt;boost/foreach.hpp&gt;</code><br/>
+<code>#include &lt;boost/shared_ptr.hpp&gt;</code><br/>
+<code>#include &lt;Box2D/Box2D.h&gt;</code><br/>
+<code>#include &lt;SFML/Graphics.hpp&gt;</code><br/>
+<code>#include &lt;SFML/Window.hpp&gt;</code><br/>
+<code>#include &quot;<a class="el" href="Window_8h_source.html">Game/Window.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Config_8h_source.html">Game/Config.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="CollisionDispatcher_8h_source.html">Game/CollisionDispatcher.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="RectangleDef_8h_source.html">Game/Entities/RectangleDef.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Bar_8h_source.html">Game/Entities/Bar.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Bartender_8h_source.html">Game/Entities/Bartender.h</a>&quot;</code><br/>
+
+<p><a href="World_8h_source.html">Go to the source code of this file.</a></p>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr><td colspan="2"><h2>Classes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGame_1_1World.html">Game::World</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Acts as a Wrapper for b2World and creates all entities.  <a href="classGame_1_1World.html#_details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2>Namespaces</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame.html">Game</a></td></tr>
+
+<p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Global namespace. </p>
+<br/></td></tr>
+</p>
+<tr><td colspan="2"><h2>Typedefs</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef std::map<br class="typebreak"/>
+&lt; <a class="el" href="namespaceGame_1_1Entities_1_1Id.html#a73b11de228fb133e9cc9391a163c92ad">Game::Entities::Id::t_entities_id</a>, <br class="typebreak"/>
+boost::shared_ptr<br class="typebreak"/>
+&lt; <a class="el" href="classGame_1_1Entity.html">Game::Entity</a> &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGame.html#a8e3a4ed08520965de21ac87edce867c3">Game::t_entities</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A map-type containing elements of type <a class="el" href="classGame_1_1Entity.html" title="Abstract base class for drawable objects.">Entity</a>.  <a href="#a8e3a4ed08520965de21ac87edce867c3"></a><br/></td></tr>
+</table>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
