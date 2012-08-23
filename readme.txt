@@ -1,7 +1,8 @@
 Buggy Bawkses!
 -------------------
 
-Copyright 2012 Thomas Trapp, http://www.thomastrapp.com
+Copyright 2012 Thomas Trapp, except where indicated otherwise.
+http://www.thomastrapp.com
 
 Bugy Bawkses is free Software under the terms of the GNU General Public License
 Version 2. See COPYING for full license text.
