@@ -9,6 +9,7 @@
 #include "Game/Entity.h"
 #include "Game/Entities/Id.h"
 #include "Game/Entities/FootSensor.h"
+#include "Game/Entities/State.h"
 
 namespace Game
 {
@@ -49,7 +50,7 @@ public:
    * and then call Game::Entity::sync_visible to apply any Box2d 
    * transformations to the sfml shape.
    */
-  void update(const sf::View& /* view */);
+  State::t_entities_state update(const sf::View& /* view */);
   
   /**
    * @brief Handle user input for player, e.g. jump, run
@@ -88,6 +89,13 @@ private:
    * @param input An event with event.type KeyReleased
    */
   void _handle_key_release(const sf::Event& input);
+  
+  /**
+   * @brief _is_in_view Checks if player is currently visible on screen
+   * @param view The current view (=camera)
+   * @return true if player is in view
+   */
+  bool _is_in_view(const sf::View& view);
   
   /**
    * @brief The t_move_state enum declares all possible values for 
@@ -129,6 +137,11 @@ private:
    * @brief The current state of movement
    */
   Player::t_move_state current_move_state; 
+  
+  /**
+   * @brief The height of this player
+   */
+  const float height;
 };
 
   }

@@ -18,6 +18,7 @@ namespace Game
   void Controller::start()
   {
     sf::Event sfml_event;
+    int i = 0; // HAX
     
     while( this->window.isOpen() )
     {
@@ -28,11 +29,20 @@ namespace Game
       
       this->step();
       
+      const sf::View current_view(this->window.getView());
+      Entities::State::state_mask total_entities_state = 
+        this->world.update(current_view);
+      
+      if( total_entities_state & Game::Entities::State::PLAYER_DEAD )
+      {
+        return;
+      }
+      
       // Don't immediately begin to move the camera.
       // Replace this hack with a Game::State.
       // Camera movement should only start if the player reaches the top of 
       // the view.
-      static int i = 0;
+      // HAX
       if( ++i > 100 )
         this->window.move_view_y(-2.0f);
 
@@ -53,10 +63,7 @@ namespace Game
   
   void Controller::render()
   {
-    const sf::View current_view(this->window.getView());
-    
     this->window.clear();
-    this->world.update(current_view);
     this->world.render(this->window);
     
     #ifdef ENABLE_DEBUG_DRAW

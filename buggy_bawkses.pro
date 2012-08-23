@@ -58,7 +58,8 @@ HEADERS += Game/Window.h \
     Game/Entities/Bar.h \
     Game/Entities/RectangleDef.h \
     Game/Entities/FootSensor.h \
-    Game/Entities/Bartender.h
+    Game/Entities/Bartender.h \
+    Game/Entities/State.h
 QMAKE_CXXFLAGS_WARN_ON += -Wconversion \
     -Wsign-conversion \
     -Wextra \

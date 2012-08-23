@@ -28,10 +28,12 @@ void Bartender::render(sf::RenderTarget& renderer)
   }
 }
 
-void Bartender::update(const sf::View& view)
+State::t_entities_state Bartender::update(const sf::View& view)
 {
   this->_maybe_add_new_bars(view);
   this->_maybe_remove_old_bars(view);
+  
+  return State::NONE;
 }
 
 void Bartender::_maybe_remove_old_bars(const sf::View& view)
@@ -45,9 +47,6 @@ void Bartender::_maybe_remove_old_bars(const sf::View& view)
   {
     if( (*it)->is_in_view(view) == false )
     {
-      #ifdef DEBUG
-      std::cout << "Removing a bar" << std::endl;
-      #endif
       it = this->bars.erase(it);
     }
     else
@@ -136,14 +135,6 @@ void Bartender::_maybe_add_new_bars(const sf::View& view)
     );
     
     const Game::Entities::RectangleDef rect_def(bar_size, bar_position);
-    
-    #ifdef DEBUG
-    std::cout << "Inserting Bar at " 
-              << bar_position.x 
-              << ", " 
-              << bar_position.y 
-              << std::endl;
-    #endif
     
     this->_insert_bar(rect_def);
     this->next_bar_pos_y = bar_pos_y - bar_spacing;

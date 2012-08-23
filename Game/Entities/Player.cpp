@@ -11,7 +11,10 @@ Player::Player(boost::shared_ptr<Game::Config> conf, Game::World& game_world)
   physics(NULL),
   visible(),
   foot(),
-  current_move_state(MOVEMENT_STOPPED)
+  current_move_state(MOVEMENT_STOPPED),
+  height(
+    Game::Util::pixel_to_meter(conf->get<float>("player-height"))
+  )
 {
   // setup the player
   {
@@ -99,10 +102,19 @@ void Player::render(sf::RenderTarget& renderer)
   renderer.draw(this->visible);
 }
 
-void Player::update(const sf::View& /* view */)
+State::t_entities_state Player::update(const sf::View& view)
 {
   this->_handle_movement();
   this->sync_visible(this->physics, this->visible);
+  
+  if( this->_is_in_view(view) )
+  {
+    return State::NONE;
+  }
+  else
+  {
+    return State::PLAYER_DEAD;
+  }
 }
 
 void Player::_handle_movement()
@@ -200,6 +212,17 @@ void Player::_handle_key_release(const sf::Event& input)
       break;
     }
   }
+}
+
+bool Player::_is_in_view(const sf::View& view)
+{
+  const float player_top = 
+    this->physics->GetPosition().y - this->height / 2.0f;
+  const float view_bottom = Game::Util::pixel_to_meter(
+    view.getCenter().y + view.getSize().y / 2.0f
+  );
+  
+  return ( player_top < view_bottom );
 }
 
 

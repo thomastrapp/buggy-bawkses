@@ -18,13 +18,16 @@
 
 namespace Game
 {
-  // Forward declaration to solve circular dependency between World and Entity
+  // Forward declaration to solve circular dependencies
   class Entity;
   
   /**
-   * @brief A vector-type containing elements of type Entity
+   * @brief A map-type containing elements of type Entity
    */
-  typedef std::vector< boost::shared_ptr<Game::Entity> > t_entities;
+  typedef std::map< 
+    Game::Entities::Id::t_entities_id, 
+    boost::shared_ptr<Game::Entity>
+  > t_entities;
 
   /**
    * @brief Acts as a Wrapper for b2World and creates all entities.
@@ -69,7 +72,7 @@ namespace Game
     /**
      * @brief Update all child entities
      */
-    void update(const sf::View& view);
+    Entities::State::state_mask update(const sf::View& view);
     
     /**
      * @brief Handle input
@@ -109,7 +112,7 @@ namespace Game
     boost::shared_ptr<Game::Config> config;
 
     /**
-     * @brief A vector filled with entities
+     * @brief A map filled with entities
      */
     t_entities entities;
     

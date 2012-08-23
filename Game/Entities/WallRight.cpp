@@ -10,6 +10,7 @@ WallRight::WallRight(
   Game::World& game_world
 )
 : Wall(
+    Game::Entities::Id::WALL_RIGHT, 
     game_world,
     Game::Entities::RectangleDef(
       sf::Vector2f( // size

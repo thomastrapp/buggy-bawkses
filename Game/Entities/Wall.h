@@ -9,6 +9,7 @@
 #include "Game/Config.h"
 #include "Game/Entity.h"
 #include "Game/Entities/RectangleDef.h"
+#include "Game/Entities/State.h"
 
 namespace Game
 {
@@ -34,6 +35,7 @@ public:
    * Wall
    */
   Wall(
+    Game::Entities::Id::t_entities_id entity_id,
     Game::World& game_world,
     const Game::Entities::RectangleDef& rect_def
   );
@@ -54,7 +56,7 @@ public:
    *
    * @param view The current view (=camera)
    */
-  void update(const sf::View& view);
+  State::t_entities_state update(const sf::View& view);
 
 private:
   Wall(const Wall&);

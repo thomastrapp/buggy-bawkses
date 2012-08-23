@@ -7,10 +7,11 @@ namespace Entities
 {
 
 Wall::Wall(
+  Game::Entities::Id::t_entities_id wall_entity_id,
   Game::World& game_world,
   const Game::Entities::RectangleDef& rect_def
 )
-: Entity(Game::Entities::Id::WALL),
+: Entity(wall_entity_id),
   physics(NULL),
   visible(rect_def.size)
 {
@@ -59,7 +60,7 @@ void Wall::render(sf::RenderTarget& renderer)
   renderer.draw(this->visible);
 }
 
-void Wall::update(const sf::View& view)
+State::t_entities_state Wall::update(const sf::View& view)
 {
   const b2Vec2 new_position(
     this->physics->GetPosition().x, 
@@ -70,6 +71,8 @@ void Wall::update(const sf::View& view)
   
   this->physics->SetTransform(new_position, this->physics->GetAngle());
   this->sync_visible(this->physics, this->visible);
+  
+  return State::NONE;
 }
 
 }

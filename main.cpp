@@ -75,8 +75,5 @@ int main(int argc, char ** argv)
   }
   #endif
   
-  #ifdef DEBUG
-    std::cout << "EOF" << std::endl;
-  #endif
   return EXIT_SUCCESS;
 }

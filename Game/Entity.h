@@ -8,6 +8,7 @@
 #include "Game/Config.h"
 #include "Game/Util/Util.h"
 #include "Game/Entities/Id.h"
+#include "Game/Entities/State.h"
  
 namespace Game
 {
@@ -50,7 +51,12 @@ public:
    *
    * Subclasses may implement this method.
    */
-  virtual void update(const sf::View& /* view */) {}
+  virtual Entities::State::t_entities_state update(
+    const sf::View& /* view */
+  )
+  {
+    return Entities::State::NONE;
+  }
   
   /**
    * @brief To pass user supplied input to a Entity
@@ -66,7 +72,7 @@ public:
    *
    * @return Entity Id
    */
-  Game::Entities::Id::t_entities_id get_entity_id() const;
+  Entities::Id::t_entities_id get_entity_id() const;
   
   /**
    * @brief Callback for beginning of a collision

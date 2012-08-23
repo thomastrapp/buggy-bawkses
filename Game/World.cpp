@@ -42,25 +42,29 @@ namespace Game
 
   void World::render(sf::RenderTarget& renderer)
   {
-    BOOST_FOREACH(boost::shared_ptr<Game::Entity> entity, this->entities)
+    BOOST_FOREACH(t_entities::value_type entity, this->entities)
     {
-      entity->render(renderer);
+      (entity.second)->render(renderer);
     }
   }
   
-  void World::update(const sf::View& view)
+  Entities::State::state_mask World::update(const sf::View& view)
   {
-    BOOST_FOREACH(boost::shared_ptr<Game::Entity> entity, this->entities)
+    Entities::State::state_mask total_entity_state = 0;
+    
+    BOOST_FOREACH(t_entities::value_type entity, this->entities)
     {
-      entity->update(view);
+      total_entity_state |= (entity.second)->update(view);
     }
+    
+    return total_entity_state;
   }
 
   void World::handle_input(const sf::Event &input)
   {
-    BOOST_FOREACH(boost::shared_ptr<Game::Entity> entity, this->entities)
+    BOOST_FOREACH(t_entities::value_type entity, this->entities)
     {
-      entity->handle_input(input);
+      (entity.second)->handle_input(input);
     }
   }
   
@@ -73,34 +77,54 @@ namespace Game
   {
     // left wall
     {
-      boost::shared_ptr<Game::Entity> ptr_left(
+      boost::shared_ptr<Game::Entity> wall_left(
         new Game::Entities::WallLeft(this->config, *this)
       );
-      this->entities.push_back(ptr_left);
+      this->entities.insert(
+        t_entities::value_type(
+          wall_left->get_entity_id(),
+          wall_left
+        )
+      );
     }
     
     // right wall
     {
-      boost::shared_ptr<Game::Entity> ptr_right(
+      boost::shared_ptr<Game::Entity> wall_right(
         new Game::Entities::WallRight(this->config, *this)
       );
-      this->entities.push_back(ptr_right);
+      this->entities.insert(
+        t_entities::value_type(
+          wall_right->get_entity_id(),
+          wall_right
+        )
+      );
     }
     
     // player
     {
-      boost::shared_ptr<Game::Entity> ptr_player(
+      boost::shared_ptr<Game::Entities::Player> player(
         new Game::Entities::Player(this->config, *this)
       );
-      this->entities.push_back(ptr_player);
+      this->entities.insert(
+        t_entities::value_type(
+          player->get_entity_id(),
+          player
+        )
+      );
     }
     
     // bars
     {
-      boost::shared_ptr<Game::Entity> ptr_bartender(
+      boost::shared_ptr<Game::Entity> bartender(
         new Game::Entities::Bartender(this->config, *this)
       );
-      this->entities.push_back(ptr_bartender);
+      this->entities.insert(
+        t_entities::value_type(
+          bartender->get_entity_id(),
+          bartender
+        )
+      );
     }
   }
 }

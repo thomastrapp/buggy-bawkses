@@ -12,6 +12,7 @@
 
 #include "Game/Entity.h"
 #include "Game/Entities/RectangleDef.h"
+#include "Game/Entities/State.h"
 
 namespace Game
 {
@@ -58,7 +59,7 @@ public:
    *
    * @param view The current view (=camera position)
    */
-  void update(const sf::View& view);
+  State::t_entities_state update(const sf::View& view);
   
   /**
    * @brief Render all child Bars
